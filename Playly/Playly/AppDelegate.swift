@@ -36,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func playPrevTrackMusic() {
-        //runAppleScript(name: "prev")
         app.previousTrack?()
     }
 
@@ -48,27 +47,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         app.playpause?()
         changePlayIcon()
-
-//        print(app.isRunning)
-
-//        runAppleScript(name: "playpause")
-
-        // Optimistic UI
-//        isPlaying = !isPlaying
-
-        // Pessimistic UI – Fetch actual player state
-        // Takes more time than optimistic UI, but updates icon with real state
-        // in most of the time this code will no affect anything
-
-//        let seconds = 1.0
-//        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-//            self.isPlaying = self.isITunesPlaying()
-//            self.changePlayIcon()
-//        }
     }
 
     @objc func playNextTrackMusic() {
-        //runAppleScript(name: "next")
         app.nextTrack?()
     }
 
@@ -77,13 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func isITunesPlaying() -> Bool {
-//        let command = NSAppleScript(source: "tell application \"iTunes\" to get player state is playing")
-//        var error: NSDictionary? = nil
-//        let result = command?.executeAndReturnError(&error)
-//
-//        return result?.booleanValue ?? false
-
-        return app.playerState == iTunesEPlS.playing;
+        app.playerState == iTunesEPlS.playing;
     }
 
     func isITunesRunning() -> Bool {
