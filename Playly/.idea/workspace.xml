@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26ec995c-6945-446b-a95c-ede2b6fd6dec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Playly.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Playly.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playly/scripts/prev.scpt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +105,7 @@
       <workItem from="1569622075923" duration="4037000" />
       <workItem from="1569667648726" duration="3621000" />
       <workItem from="1569677235874" duration="16521000" />
-      <workItem from="1569704360157" duration="363000" />
+      <workItem from="1569704360157" duration="768000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1569704553468</created>
@@ -116,7 +114,28 @@
       <option name="project" value="LOCAL" />
       <updated>1569704553468</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added README">
+      <created>1569704795410</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1569704795410</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Moved README">
+      <created>1569704888624</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1569704888624</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Moved README">
+      <created>1569704946736</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1569704946736</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +156,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Added README" />
+    <MESSAGE value="Moved README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved README" />
   </component>
 </project>
