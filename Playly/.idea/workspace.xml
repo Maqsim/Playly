@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26ec995c-6945-446b-a95c-ede2b6fd6dec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Playly.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Playly.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Playly.xcodeproj/project.xcworkspace/xcuserdata/max.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Playly.xcodeproj/project.xcworkspace/xcuserdata/max.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +106,7 @@
       <workItem from="1569622075923" duration="4037000" />
       <workItem from="1569667648726" duration="3621000" />
       <workItem from="1569677235874" duration="16521000" />
-      <workItem from="1569704360157" duration="768000" />
+      <workItem from="1569704360157" duration="1314000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1569704553468</created>
@@ -135,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569704946736</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Excluded README from xcodeproject">
+      <created>1569705275229</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1569705275229</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +166,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Added README" />
     <MESSAGE value="Moved README" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved README" />
+    <MESSAGE value="Excluded README from xcodeproject" />
+    <option name="LAST_COMMIT_MESSAGE" value="Excluded README from xcodeproject" />
   </component>
 </project>
