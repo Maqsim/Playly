@@ -1,5 +1,5 @@
 
-# Playle is awesome!
+# Playly is awesome!
 ![Playly toolbar app](https://i.ibb.co/WkBmJhR/Screen-Shot-2019-09-29-at-19-33-09.png)
 
 ## TRY IT NOW
