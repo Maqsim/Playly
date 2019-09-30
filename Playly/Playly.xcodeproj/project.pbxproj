@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A5641614D3464C8734DD185 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5641C1F6ACDFE3EB27CE40 /* LaunchAtLogin.swift */; };
 		1A5642E440F5FEDFE28CC87F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56406A5B8DBB50C05F2E3D /* Main.storyboard */; };
 		1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5641880A557B8A4E319E8A /* Assets.xcassets */; };
 		1A564788F884E9B8BC43C8B0 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564BD04F86D2A933C1AE1A /* iTunes.swift */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		1A5640534E23A3FF3224B2AF /* Playly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5641880A557B8A4E319E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A5641C1F6ACDFE3EB27CE40 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		1A56435C0D88E583C1362CF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A56466DC123C8FBA54C12DE /* Playly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Playly.entitlements; sourceTree = "<group>"; };
 		1A564710DDAB365271654491 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 				1A56406A5B8DBB50C05F2E3D /* Main.storyboard */,
 				1A564710DDAB365271654491 /* ViewController.swift */,
 				1A564BD04F86D2A933C1AE1A /* iTunes.swift */,
+				1A5641C1F6ACDFE3EB27CE40 /* LaunchAtLogin.swift */,
 			);
 			path = Playly;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				1A5647B07A56C1C2733DD6A8 /* AppDelegate.swift in Sources */,
 				1A564C7D16D85B867BC13555 /* ViewController.swift in Sources */,
 				1A564788F884E9B8BC43C8B0 /* iTunes.swift in Sources */,
+				1A5641614D3464C8734DD185 /* LaunchAtLogin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
