@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ITunesHelper.requestPermission()
 
         // Init About window
-        AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "foo") as! NSWindowController)
+        AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "AboutWindowID") as! NSWindowController)
     }
     
     @objc func onExternalITunesStateUpdate() {
@@ -69,21 +69,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func constructMenu() {
                       menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
+                      menu.addItem(.separator())
         let options = menu.addItem(withTitle: "Options", action: nil, keyEquivalent: "")
                       menu.addItem(.separator())
                       menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q")
 
         // Submenu for Options
         let submenu = NSMenu(title: "Options")
-        let item1 = submenu.addItem(withTitle: "Launch At Login", action: #selector(self.toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
+        let item1 = submenu.addItem(withTitle: "Open at Login", action: #selector(self.toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
                     submenu.addItem(.separator())
-        let item2 = submenu.addItem(withTitle: "Show Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
-        let item3 = submenu.addItem(withTitle: "Show Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
+        let item2 = submenu.addItem(withTitle: "Show Artwork", action: #selector(self.toggleShowArtworkOption(_:)), keyEquivalent: "")
+        let item3 = submenu.addItem(withTitle: "Show Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
+        let item4 = submenu.addItem(withTitle: "Show Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
 
         // Restore options
         item1.state = preferences.launchAtLogin.toStateValue()
-        item2.state = preferences.showPrevButton.toStateValue()
-        item3.state = preferences.showNextButton.toStateValue()
+        item2.state = preferences.showArtwork.toStateValue()
+        item3.state = preferences.showPrevButton.toStateValue()
+        item4.state = preferences.showNextButton.toStateValue()
 
         menu.setSubmenu(submenu, for: options)
     }
@@ -106,6 +109,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             LaunchAtLogin.isEnabled = true
             preferences.launchAtLogin = true
         }
+    }
+
+    @objc func toggleShowArtworkOption(_ item: NSMenuItem) {
+        if item.state == .on {
+            item.state = .off
+            preferences.showArtwork = false
+        } else {
+            item.state = .on
+            preferences.showArtwork = true
+        }
+
+        changePlayIcon()
     }
 
     @objc func togglePrevTrackOption(_ item: NSMenuItem) {
@@ -197,12 +212,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             let isPlaying = iTunes.playerState == .playing
 
-            statusItemPlay.button?.image = NSImage(named: isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
+            if preferences.showArtwork && isPlaying {
+                let artworkImage: NSImage = (iTunes.currentTrack?.artworks?()[0] as AnyObject).data
+                artworkImage.size = NSSize(width: 22, height: 22)
+
+                statusItemPlay.button?.image = artworkImage
+            } else {
+                statusItemPlay.button?.image = NSImage(named: isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
+            }
         }
     }
 
     @objc func showAboutWindow() {
         AboutWindowController?.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     @objc func quit() {

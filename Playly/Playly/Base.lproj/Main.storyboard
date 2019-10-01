@@ -684,7 +684,7 @@
         <!--Window Controller-->
         <scene sceneID="gvu-Ka-L4r">
             <objects>
-                <windowController storyboardIdentifier="foo" id="Ord-md-i9P" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="AboutWindowID" id="Ord-md-i9P" sceneMemberID="viewController">
                     <window key="window" title="About Playly" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="XzJ-yd-0v0">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -700,16 +700,34 @@
                 </windowController>
                 <customObject id="Sm4-sr-lnf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="84.5" y="743"/>
+            <point key="canvasLocation" x="42" y="717"/>
         </scene>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="8zN-7p-LPS">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="MuG-FQ-krR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="MuG-FQ-krR" customClass="AboutViewController" customModule="Playly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1QM-Py-L7X">
                         <rect key="frame" x="0.0" y="0.0" width="478" height="190"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-jt-UUk">
+                                <rect key="frame" x="140" y="91" width="125" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0" id="v5u-LF-4VP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-lG-2CG">
+                                <rect key="frame" x="140" y="60" width="303" height="13"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="All rights reserver. Developed by Max Diachenko" id="XeO-5s-0r3">
+                                    <font key="font" metaFont="systemUltraLight" size="10"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ryl-Qh-bZb">
                                 <rect key="frame" x="140" y="111" width="114" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -719,24 +737,28 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-jt-UUk">
-                                <rect key="frame" x="140" y="81" width="125" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0" id="v5u-LF-4VP">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-tN-psW">
+                                <rect key="frame" x="136" y="13" width="89" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Website" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jYo-1z-M3L">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-lG-2CG">
-                                <rect key="frame" x="140" y="20" width="303" height="34"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="All rights reserver. Developed by Max Diachenko" id="XeO-5s-0r3">
-                                    <font key="font" metaFont="systemUltraLight" size="10"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="website:" target="MuG-FQ-krR" id="5Js-5b-cqt"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H8P-za-FgN">
+                                <rect key="frame" x="225" y="13" width="146" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Report a Problem" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tib-bX-v0r">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onReportProblemClick:" target="MuG-FQ-krR" id="5Bo-bW-6aj"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                 </viewController>

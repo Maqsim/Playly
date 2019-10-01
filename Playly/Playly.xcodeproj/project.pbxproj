@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56448B11A38050BC2910EB /* AboutViewController.swift */; };
 		1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5641880A557B8A4E319E8A /* Assets.xcassets */; };
 		1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */; };
 		1A5645E9A3DE18367594406D /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564223593CD9B29E9E7D67 /* iTunes.swift */; };
 		1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5648F37182458F2A50AC04 /* AppDelegate.swift */; };
 		1A5649E49C8BB0A58023FB5E /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646C93A88FA50B84814BD /* LaunchAtLogin.swift */; };
-		1A564C7D16D85B867BC13555 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564710DDAB365271654491 /* ViewController.swift */; };
 		1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564B73172734A573404A2D /* Preferences.swift */; };
 		1A564FCAD9772E6F7B694E28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A564B2E686DEC703D6091A8 /* Main.storyboard */; };
 		500F2D86233FB73A00688FF8 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 500F2D85233FB73900688FF8 /* Resources */; };
@@ -23,11 +23,11 @@
 		1A5641880A557B8A4E319E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A564223593CD9B29E9E7D67 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		1A5643DC2C06680635C1D2D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A56448B11A38050BC2910EB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1A56466DC123C8FBA54C12DE /* Playly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Playly.entitlements; sourceTree = "<group>"; };
 		1A5646C93A88FA50B84814BD /* LaunchAtLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITunesHelper.swift; sourceTree = "<group>"; };
 		1A5646E2FD66BD90E54EB31C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		1A564710DDAB365271654491 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1A5648F37182458F2A50AC04 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A564B73172734A573404A2D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		500F2D85233FB73900688FF8 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
@@ -50,14 +50,22 @@
 				500F2D85233FB73900688FF8 /* Resources */,
 				1A5641880A557B8A4E319E8A /* Assets.xcassets */,
 				1A56466DC123C8FBA54C12DE /* Playly.entitlements */,
-				1A564710DDAB365271654491 /* ViewController.swift */,
 				1A56477DC4451126F590B969 /* Application */,
 				1A564A13C4F1330B82C0B3A6 /* Storyboards */,
 				1A564466FC65BB5389728384 /* Protocols */,
 				1A564A0211E7B38A5ECF6A7B /* Helpers */,
 				1A56480C4CBE5501B42FA298 /* Models */,
+				1A5641A2B71223477249150C /* Controllers */,
 			);
 			path = Playly;
+			sourceTree = "<group>";
+		};
+		1A5641A2B71223477249150C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A56448B11A38050BC2910EB /* AboutViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		1A564466FC65BB5389728384 /* Protocols */ = {
@@ -183,12 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A564C7D16D85B867BC13555 /* ViewController.swift in Sources */,
 				1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */,
 				1A5645E9A3DE18367594406D /* iTunes.swift in Sources */,
 				1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */,
 				1A5649E49C8BB0A58023FB5E /* LaunchAtLogin.swift in Sources */,
 				1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */,
+				1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

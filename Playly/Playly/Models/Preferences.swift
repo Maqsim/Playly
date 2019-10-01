@@ -38,6 +38,16 @@ struct Preferences {
             defaults.set(newValue, forKey: "showNextButton")
         }
     }
+
+    var showArtwork: Bool {
+        get {
+            defaults.object(forKey: "showArtwork") as? Bool ?? false
+        }
+
+        set {
+            defaults.set(newValue, forKey: "showArtwork")
+        }
+    }
 }
 
 extension Bool {
