@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         constructStatusBar()
         constructMenu()
 
-        // Check iTunes play state every second
+        // Check iTunes play state
         ITunesHelper.onStateChange(self, action: #selector(onExternalITunesStateUpdate))
 
         // Check permission ask it if App launch first time
