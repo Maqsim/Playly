@@ -3,9 +3,12 @@
 
 Playly is a menubar app to control your iTunes playback. 
 
+<img src="https://img.shields.io/github/v/release/Maqsim/Playly?include_prereleases"/> <img src="https://img.shields.io/github/stars/Maqsim/Playly"/>
+
 **Features:**
 1. Tiny size, CPU and Power efficient
-2. Sexy UI
+2. Sexy, minimalistic UI
+3. 3 buttons to control everything
 4. Free!
 
 **Screenshots:**
