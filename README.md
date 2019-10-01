@@ -1,5 +1,5 @@
 
-### Playly
+### Playly <img src="https://img.shields.io/github/v/release/Maqsim/Playly?include_prereleases"/>
 
 Playly is a menubar app to control your iTunes playback. 
 
