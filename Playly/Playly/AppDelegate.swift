@@ -5,58 +5,65 @@
 //  Copyright © 2019 Max Diachenko. All rights reserved.
 
 import Cocoa
-import ScriptingBridge
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var startedPressing: Bool = false
-    var startedPressingAt: Date?
-    let mainBundle = Bundle.main
-    let iTunes: iTunesApplication = SBApplication(bundleIdentifier: "com.apple.iTunes")!
-    let aboutView = ViewController()
+    let mainStoryboard = NSStoryboard(name: "Main", bundle: nil)
+    var AboutWindowController: NSWindowController? = nil
+    let iTunes = ITunesHelper.iTunes()
+    var preferences = Preferences()
 
     // Add toolbar items
-    let statusItemNext = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    let statusItemPlay = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    let statusItemPrev = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    let statusItemNext = NSStatusBar.system.statusItem(withLength: 25)
+    let statusItemPlay = NSStatusBar.system.statusItem(withLength: 22)
+    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 25)
 
     // Menu
     let menu = NSMenu()
 
+    var startedPressing = false
+    var startedPressingAt: Date?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        LaunchAtLogin.isEnabled = true
-        constructStatusBarItems()
+        LaunchAtLogin.isEnabled = preferences.launchAtLogin
+        constructStatusBar()
         constructMenu()
-        runAppleScript(name: "request-permission")
 
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: "checkITunesState", userInfo: nil, repeats: true)
+        // Check iTunes play state every second
+        ITunesHelper.onStateChange(self, action: #selector(onExternalITunesStateUpdate))
+
+        // Check permission ask it if App launch first time
+        ITunesHelper.requestPermission()
+
+        // Init About window
+        AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "foo") as! NSWindowController)
     }
-
-    @objc func checkITunesState() {
+    
+    @objc func onExternalITunesStateUpdate() {
         changePlayIcon()
         updateTooltips()
     }
 
-    func constructStatusBarItems() {
+    func constructStatusBar() {
         // Prev button
-        statusItemPrev.button?.action = "onPrevClick"
+        statusItemPrev.button?.action = #selector(onPrevClick)
         statusItemPrev.button?.sendAction(on: [.leftMouseDown, .leftMouseUp])
         statusItemPrev.button?.image = NSImage(named: NSImage.touchBarRewindTemplateName)
         statusItemPrev.button?.image?.size = NSSize(width: 13, height: 25)
+        if !preferences.showPrevButton { statusItemPrev.length = 0 }
 
         // Play/Pause button
-        statusItemPlay.button?.action = "onPlayClick"
+        statusItemPlay.button?.action = #selector(onPlayClick)
         statusItemPlay.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
-        statusItemPlay.length = 22 //  Make button width static to look the same for different icons
-        changePlayIcon()
 
         // Next button
-        statusItemNext.button?.action = "onNextClick"
+        statusItemNext.button?.action = #selector(onNextClick)
         statusItemNext.button?.sendAction(on: [.leftMouseDown, .leftMouseUp])
         statusItemNext.button?.image = NSImage(named: NSImage.touchBarFastForwardTemplateName)
         statusItemNext.button?.image?.size = NSSize(width: 13, height: 25)
+        if !preferences.showNextButton { statusItemNext.length = 0 }
 
+        changePlayIcon()
         updateTooltips()
     }
 
@@ -64,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                       menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
         let options = menu.addItem(withTitle: "Options", action: nil, keyEquivalent: "")
                       menu.addItem(.separator())
-                      menu.addItem(withTitle: "Quit", action: "quit", keyEquivalent: "q")
+                      menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q")
 
         // Submenu for Options
         let submenu = NSMenu(title: "Options")
@@ -72,22 +79,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     submenu.addItem(.separator())
         let item2 = submenu.addItem(withTitle: "Show Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
         let item3 = submenu.addItem(withTitle: "Show Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
-        (item1.state, item2.state, item3.state) = (.on, .on, .on)
+
+        // Restore options
+        item1.state = preferences.launchAtLogin.toStateValue()
+        item2.state = preferences.showPrevButton.toStateValue()
+        item3.state = preferences.showNextButton.toStateValue()
 
         menu.setSubmenu(submenu, for: options)
     }
 
     func updateTooltips() {
-        statusItemPlay.button?.toolTip = "\(iTunes.currentTrack?.artist ?? "") – \(iTunes.currentTrack?.name ?? "") (\(secondsToString(TimeInterval(iTunes.playerPosition!))))"
+        if iTunes.isRunning {
+            statusItemPlay.button?.toolTip = "\(iTunes.currentTrack?.artist ?? "") – \(iTunes.currentTrack?.name ?? "")"
+        } else {
+            statusItemPlay.button?.toolTip = nil
+        }
     }
 
     @objc func toggleLaunchAtLoginOption(_ item: NSMenuItem) {
         if item.state == .on {
             item.state = .off
             LaunchAtLogin.isEnabled = false
+            preferences.launchAtLogin = false
         } else {
             item.state = .on
             LaunchAtLogin.isEnabled = true
+            preferences.launchAtLogin = true
         }
     }
 
@@ -95,9 +112,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if item.state == .on {
             item.state = .off
             statusItemPrev.length = 0 // use length over isVisible to keep order when re-enabling
+            preferences.showPrevButton = false
         } else {
             item.state = .on
-            statusItemPrev.length = NSStatusItem.variableLength
+            statusItemPrev.length = 25
+            preferences.showPrevButton = true
         }
     }
 
@@ -105,21 +124,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if item.state == .on {
             item.state = .off
             statusItemNext.length = 0 // use length over isVisible to keep order when re-enabling
+            preferences.showNextButton = false
         } else {
             item.state = .on
-            statusItemNext.length = NSStatusItem.variableLength
+            statusItemNext.length = 25
+            preferences.showNextButton = true
         }
     }
 
     @objc func onPrevClick() {
-        let isPressing = NSApp.currentEvent?.type == NSEvent.EventType.leftMouseDown
+        let isPressing = NSApp.currentEvent?.type == .leftMouseDown
+        let wasLongPress = abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1
 
         if isPressing { // Start pressing
             startedPressing = true
             startedPressingAt = Date()
 
             iTunes.rewind?()
-        } else if startedPressing && abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1 { // End pressing
+        } else if startedPressing && wasLongPress { // End pressing
             startedPressing = false
             startedPressingAt = nil
 
@@ -128,39 +150,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             startedPressing = false
             startedPressingAt = nil
 
+            iTunes.resume?()
             iTunes.backTrack?()
         }
-
-        updateTooltips()
     }
 
     @objc func onPlayClick() {
-        let isRightClick = NSApp.currentEvent?.type == NSEvent.EventType.rightMouseUp
+        let isRightClick = NSApp.currentEvent?.type == .rightMouseUp
         if isRightClick {
             return statusItemPlay.popUpMenu(menu)
         }
 
-        // Left click
-
         if !iTunes.isRunning {
-            changePlayIcon(true)
-            return runAppleScript(name: "run-and-play")
+            changePlayIcon(NSImage.touchBarPauseTemplateName)
+            return ITunesHelper.launchAndPlay()
         }
 
         iTunes.playpause?()
-        changePlayIcon()
-        updateTooltips()
     }
 
     @objc func onNextClick() {
-        let isPressing = NSApp.currentEvent?.type == NSEvent.EventType.leftMouseDown
+        let isPressing = NSApp.currentEvent?.type == .leftMouseDown
+        let wasLongPress = abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1
 
         if isPressing { // Start pressing
             startedPressing = true
             startedPressingAt = Date()
 
             iTunes.fastForward?()
-        } else if startedPressing && abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1 { // End pressing
+        } else if startedPressing && wasLongPress { // End pressing
             startedPressing = false
             startedPressingAt = nil
 
@@ -171,41 +189,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             iTunes.nextTrack?()
         }
-
-        updateTooltips()
     }
 
-    func changePlayIcon(_ forceFlag: Bool? = nil) {
-        statusItemPlay.button?.image = NSImage(named: (forceFlag != nil && forceFlag == true || isPlaying()) ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
-    }
+    func changePlayIcon(_ forceImage: String? = nil) {
+        if forceImage != nil {
+            statusItemPlay.button?.image = NSImage(named: forceImage!)
+        } else {
+            let isPlaying = iTunes.playerState == .playing
 
-    func isPlaying() -> Bool {
-        iTunes.playerState == .playing;
-    }
-
-    func runAppleScript(name: String) {
-        let task = Process()
-        task.launchPath = "/usr/bin/osascript"
-        task.arguments = [mainBundle.path(forResource: name, ofType: ".scpt", inDirectory: "scripts")!]
-        task.launch()
+            statusItemPlay.button?.image = NSImage(named: isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
+        }
     }
 
     @objc func showAboutWindow() {
-        let mainStoryboard = NSStoryboard.init(name: "Main", bundle: nil)
-        let myWindowController = mainStoryboard.instantiateController(withIdentifier: "foo") as! NSWindowController
-        myWindowController.showWindow(self)
+        AboutWindowController?.showWindow(self)
     }
 
     @objc func quit() {
         NSApplication.shared.terminate(self)
-    }
-
-    func secondsToString(_ seconds: TimeInterval) -> String {
-        if seconds.isNaN {
-            return "00:00"
-        }
-        let Min = Int(seconds / 60)
-        let Sec = Int(seconds.truncatingRemainder(dividingBy: 60))
-        return String(format: "%02d:%02d", Min, Sec)
     }
 }
