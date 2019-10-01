@@ -1,5 +1,5 @@
 
-# Playly
+### Playly
 
 Playly is a menubar app to control your iTunes playback. 
 
@@ -15,4 +15,4 @@ Playly is a menubar app to control your iTunes playback.
 <img src="https://i.ibb.co/yXwWXmB/Screen-Shot-2019-10-01-at-19-25-56.png" height="80"/> <img src="https://i.ibb.co/rf4TN8D/Screen-Shot-2019-10-01-at-19-26-27.png" height="80"/> <img src="https://i.ibb.co/m8DmNV4/Screen-Shot-2019-10-01-at-19-27-03.png" height="80"/> <img src="https://i.ibb.co/ky8xDm3/Screen-Shot-2019-10-01-at-19-33-06.png" height="80"/>
 
 ### Try
-[Download ZIP](https://drive.google.com/file/d/1yKqk1Fw35_NlitmAlAiEbbziqrsxBe9r/view?usp=sharing), extract and run application
+[Download](https://drive.google.com/file/d/1yKqk1Fw35_NlitmAlAiEbbziqrsxBe9r/view?usp=sharing), extract, and run application
