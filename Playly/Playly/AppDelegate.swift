@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var startedPressing = false
     var startedPressingAt: Date?
+    var lastPlayClickAt: Date?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         LaunchAtLogin.isEnabled = preferences.launchAtLogin
@@ -192,11 +193,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPlayClick() {
+        // Show popup menu on right click
         let isRightClick = NSApp.currentEvent?.type == .rightMouseUp
         if isRightClick {
             return statusItemPlay.popUpMenu(menu)
         }
 
+        // Launch iTunes if not running
         if !iTunes.isRunning {
             // Loading icon
             if let clockImage = NSImage(named: NSImage.touchBarHistoryTemplateName) {
@@ -208,6 +211,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return ITunesHelper.launchAndPlay()
         }
 
+        // Double click
+        let isDoubleClick = abs(lastPlayClickAt?.timeIntervalSinceNow ?? 1) < 0.2
+        let wasPlaying = !ITunesHelper.isPlaying()
+
+        if isDoubleClick && wasPlaying && !preferences.showNextButton {
+            iTunes.nextTrack?()
+
+            lastPlayClickAt = nil
+        } else {
+            lastPlayClickAt = Date()
+        }
+
+        // Single click
         iTunes.playpause?()
     }
 
@@ -239,15 +255,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if forceImage != nil {
             statusItemPlay.button?.image = NSImage(named: forceImage!)
         } else {
-            let isPlaying = iTunes.playerState == .playing
-
-            if preferences.showArtwork && isPlaying {
+            if preferences.showArtwork && ITunesHelper.isPlaying() {
                 let artworkImage: NSImage = (iTunes.currentTrack?.artworks?()[0] as AnyObject).data
                 artworkImage.size = NSSize(width: 22, height: 22)
 
                 statusItemPlay.button?.image = artworkImage
             } else {
-                statusItemPlay.button?.image = NSImage(named: isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
+                statusItemPlay.button?.image = NSImage(named: ITunesHelper.isPlaying() ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
             }
         }
     }

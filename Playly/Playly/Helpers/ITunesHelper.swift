@@ -22,6 +22,10 @@ struct ITunesHelper {
         SBApplication(bundleIdentifier: "com.apple.iTunes")!
     }
 
+    static func isPlaying() -> Bool {
+        iTunes().playerState == .playing
+    }
+
     static func onStateChange(_ sender: Any, action: Selector) {
         DistributedNotificationCenter.default().addObserver(sender, selector: action, name: .iTunesPlayerInfo, object: nil)
     }
