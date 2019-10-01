@@ -1,6 +1,6 @@
 
 # Playly ◀️ ⏯ ▶️
-![Playly toolbar app](https://i.ibb.co/WkBmJhR/Screen-Shot-2019-09-29-at-19-33-09.png)
+<img src="https://i.ibb.co/WkBmJhR/Screen-Shot-2019-09-29-at-19-33-09.png" alt="drawing" width="400"/>
 *Playly in dark mode with options*
 
 ![Playly toolbar app](https://i.ibb.co/gvQDm5Q/Screen-Shot-2019-09-29-at-19-36-43.png)
