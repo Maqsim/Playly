@@ -48,6 +48,16 @@ struct Preferences {
             defaults.set(newValue, forKey: "showArtwork")
         }
     }
+
+    var hideControlsOnQuit: Bool {
+        get {
+            defaults.object(forKey: "hideControlsOnQuit") as? Bool ?? false
+        }
+
+        set {
+            defaults.set(newValue, forKey: "hideControlsOnQuit")
+        }
+    }
 }
 
 extension Bool {

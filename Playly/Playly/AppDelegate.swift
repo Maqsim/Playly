@@ -42,6 +42,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func onExternalITunesStateUpdate() {
         changePlayIcon()
         updateTooltips()
+
+        if preferences.hideControlsOnQuit && !iTunes.isRunning {
+            showControls(false)
+        } else {
+            showControls()
+        }
     }
 
     func constructStatusBar() {
@@ -50,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItemPrev.button?.sendAction(on: [.leftMouseDown, .leftMouseUp])
         statusItemPrev.button?.image = NSImage(named: NSImage.touchBarRewindTemplateName)
         statusItemPrev.button?.image?.size = NSSize(width: 13, height: 25)
-        if !preferences.showPrevButton { statusItemPrev.length = 0 }
+        if !preferences.showPrevButton { showControls(item: statusItemPrev, isEnabled: false) }
 
         // Play/Pause button
         statusItemPlay.button?.action = #selector(onPlayClick)
@@ -61,7 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItemNext.button?.sendAction(on: [.leftMouseDown, .leftMouseUp])
         statusItemNext.button?.image = NSImage(named: NSImage.touchBarFastForwardTemplateName)
         statusItemNext.button?.image?.size = NSSize(width: 13, height: 25)
-        if !preferences.showNextButton { statusItemNext.length = 0 }
+        if !preferences.showNextButton { showControls(item: statusItemNext, isEnabled: false) }
 
         changePlayIcon()
         updateTooltips()
@@ -78,15 +84,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let submenu = NSMenu(title: "Options")
         let item1 = submenu.addItem(withTitle: "Open at Login", action: #selector(self.toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
                     submenu.addItem(.separator())
-        let item2 = submenu.addItem(withTitle: "Show Artwork", action: #selector(self.toggleShowArtworkOption(_:)), keyEquivalent: "")
-        let item3 = submenu.addItem(withTitle: "Show Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
-        let item4 = submenu.addItem(withTitle: "Show Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
+        let item2 = submenu.addItem(withTitle: "Artwork Inside Play Button", action: #selector(self.toggleShowArtworkOption(_:)), keyEquivalent: "")
+        let item3 = submenu.addItem(withTitle: "Hide Controls on Player Quit", action: #selector(self.toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
+                    submenu.addItem(.separator())
+                    submenu.addItem(withTitle: "Controls", action: nil, keyEquivalent: "")
+        let item4 = submenu.addItem(withTitle: "Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
+        let item5 = submenu.addItem(withTitle: "Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
 
         // Restore options
         item1.state = preferences.launchAtLogin.toStateValue()
         item2.state = preferences.showArtwork.toStateValue()
-        item3.state = preferences.showPrevButton.toStateValue()
-        item4.state = preferences.showNextButton.toStateValue()
+        item3.state = preferences.hideControlsOnQuit.toStateValue()
+        item4.state = preferences.showPrevButton.toStateValue()
+        item5.state = preferences.showNextButton.toStateValue()
 
         menu.setSubmenu(submenu, for: options)
     }
@@ -123,14 +133,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         changePlayIcon()
     }
 
+    @objc func toggleHideControlsOnQuitOption(_ item: NSMenuItem) {
+        if item.state == .on {
+            item.state = .off
+            preferences.hideControlsOnQuit = false
+        } else {
+            item.state = .on
+            preferences.hideControlsOnQuit = true
+        }
+    }
+
     @objc func togglePrevTrackOption(_ item: NSMenuItem) {
         if item.state == .on {
             item.state = .off
-            statusItemPrev.length = 0 // use length over isVisible to keep order when re-enabling
+            showControls(item: statusItemPrev, isEnabled: false)
             preferences.showPrevButton = false
         } else {
             item.state = .on
-            statusItemPrev.length = 25
+            showControls(item: statusItemPrev)
             preferences.showPrevButton = true
         }
     }
@@ -138,11 +158,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func toggleNextTrackOption(_ item: NSMenuItem) {
         if item.state == .on {
             item.state = .off
-            statusItemNext.length = 0 // use length over isVisible to keep order when re-enabling
+            showControls(item: statusItemNext, isEnabled: false)
             preferences.showNextButton = false
         } else {
             item.state = .on
             statusItemNext.length = 25
+            showControls(item: statusItemNext)
             preferences.showNextButton = true
         }
     }
@@ -177,7 +198,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         if !iTunes.isRunning {
-            changePlayIcon(NSImage.touchBarPauseTemplateName)
+            // Loading icon
+            if let clockImage = NSImage(named: NSImage.touchBarHistoryTemplateName) {
+                clockImage.size = NSSize(width: 15, height: 25)
+                statusItemPlay.button?.image = clockImage
+                statusItemPlay.button?.appearsDisabled = true
+            }
+
             return ITunesHelper.launchAndPlay()
         }
 
@@ -207,6 +234,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func changePlayIcon(_ forceImage: String? = nil) {
+        statusItemPlay.button?.appearsDisabled = false
+
         if forceImage != nil {
             statusItemPlay.button?.image = NSImage(named: forceImage!)
         } else {
@@ -221,6 +250,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 statusItemPlay.button?.image = NSImage(named: isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
             }
         }
+    }
+
+    func showControls(_ isEnabled: Bool = true) {
+        showControls(item: statusItemPrev, isEnabled: preferences.showPrevButton && isEnabled)
+        showControls(item: statusItemNext, isEnabled: preferences.showNextButton && isEnabled)
+    }
+
+    func showControls(item: NSStatusItem, isEnabled: Bool = true) {
+        // Used NSStatusItem length over isVisible to keep order when re-enabling
+        item.length = isEnabled ? 25 : 0
     }
 
     @objc func showAboutWindow() {
