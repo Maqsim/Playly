@@ -7,7 +7,8 @@ Playly is a menubar app to control your iTunes playback.
 
 **Features:**
 1. Tiny size, CPU and Power efficient
-2. Sexy UI
+2. Sexy, minimalistic UI
+3. 3 buttons to control everything
 4. Free!
 
 **Screenshots:**
