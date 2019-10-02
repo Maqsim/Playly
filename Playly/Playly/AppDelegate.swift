@@ -192,6 +192,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPlayClick() {
+        let event = NSApp.currentEvent!
+
         // Show popup menu on right click
         let isRightClick = NSApp.currentEvent?.type == .rightMouseUp
         if isRightClick {
@@ -211,11 +213,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Double click
-        let isDoubleClick = NSApp.currentEvent?.clickCount == 2
+        let isDoubleClick = event.clickCount == 2
         let wasPlaying = !ITunesHelper.isPlaying()
 
-        if isDoubleClick && wasPlaying && !preferences.showNextButton {
-            iTunes.nextTrack?()
+        if isDoubleClick && wasPlaying {
+            let withOption = NSEvent.ModifierFlags(rawValue: event.modifierFlags.intersection(.deviceIndependentFlagsMask).rawValue * 2) == .option
+
+            if !preferences.showPrevButton && withOption {
+                iTunes.previousTrack?()
+            } else if !preferences.showNextButton {
+                iTunes.nextTrack?()
+            }
         }
 
         // Single click
