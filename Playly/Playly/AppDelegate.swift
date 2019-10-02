@@ -23,7 +23,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var startedPressing = false
     var startedPressingAt: Date?
-    var lastPlayClickAt: Date?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         LaunchAtLogin.isEnabled = preferences.launchAtLogin
@@ -212,15 +211,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Double click
-        let isDoubleClick = abs(lastPlayClickAt?.timeIntervalSinceNow ?? 1) < 0.2
+        let isDoubleClick = NSApp.currentEvent?.clickCount == 2
         let wasPlaying = !ITunesHelper.isPlaying()
 
         if isDoubleClick && wasPlaying && !preferences.showNextButton {
             iTunes.nextTrack?()
-
-            lastPlayClickAt = nil
-        } else {
-            lastPlayClickAt = Date()
         }
 
         // Single click
@@ -270,7 +265,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         showControls(item: statusItemPrev, isEnabled: preferences.showPrevButton && isEnabled)
         showControls(item: statusItemNext, isEnabled: preferences.showNextButton && isEnabled)
     }
-
+    
     func showControls(item: NSStatusItem, isEnabled: Bool = true) {
         // Used NSStatusItem length over isVisible to keep order when re-enabling
         item.length = isEnabled ? 25 : 0
