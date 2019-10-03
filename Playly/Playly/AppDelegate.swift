@@ -21,19 +21,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Menu
     let menu = NSMenu()
 
+    let timer = DispatchSource.makeTimerSource(flags:[], queue: DispatchQueue.main)
+    let haptic = NSHapticFeedbackManager.defaultPerformer
+
+    // Utilities
     var startedPressing = false
     var startedPressingAt: Date?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        LaunchAtLogin.isEnabled = preferences.launchAtLogin
         constructStatusBar()
         constructMenu()
 
         // Check iTunes play state
         ITunesHelper.onStateChange(self, action: #selector(onExternalITunesStateUpdate))
-
-        // Check permission ask it if App launch first time
-        ITunesHelper.requestPermission()
 
         // Init About window
         AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "AboutWindowID") as! NSWindowController)
@@ -85,11 +85,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let item1 = submenu.addItem(withTitle: "Open at Login", action: #selector(self.toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
                     submenu.addItem(.separator())
         let item2 = submenu.addItem(withTitle: "Artwork Inside Play Button", action: #selector(self.toggleShowArtworkOption(_:)), keyEquivalent: "")
-        let item3 = submenu.addItem(withTitle: "Hide Controls on Player Quit", action: #selector(self.toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
+        let item3 = submenu.addItem(withTitle: "Hide Controls when Player Quit", action: #selector(self.toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
                     submenu.addItem(.separator())
-                    submenu.addItem(withTitle: "Controls", action: nil, keyEquivalent: "")
-        let item4 = submenu.addItem(withTitle: "Previous Track", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
-        let item5 = submenu.addItem(withTitle: "Next Track", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
+        let item4 = submenu.addItem(withTitle: "Previous Track Button", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
+        let item5 = submenu.addItem(withTitle: "Next Track Button", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
 
         // Restore options
         item1.state = preferences.launchAtLogin.toStateValue()
@@ -141,6 +140,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             item.state = .on
             preferences.hideControlsOnQuit = true
         }
+
+        if preferences.hideControlsOnQuit && !iTunes.isRunning {
+            showControls(false)
+        } else {
+            showControls()
+        }
     }
 
     @objc func togglePrevTrackOption(_ item: NSMenuItem) {
@@ -169,6 +174,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onPrevClick() {
+        if !iTunes.isRunning {
+            return onPlayClick()
+        }
+
         let isPressing = NSApp.currentEvent?.type == .leftMouseDown
         let wasLongPress = abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1
 
@@ -231,6 +240,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onNextClick() {
+        if !iTunes.isRunning {
+            return onPlayClick()
+        }
+
         let isPressing = NSApp.currentEvent?.type == .leftMouseDown
         let wasLongPress = abs(startedPressingAt?.timeIntervalSinceNow ?? 0) > 1
 
@@ -259,10 +272,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItemPlay.button?.image = NSImage(named: forceImage!)
         } else {
             if preferences.showArtwork && ITunesHelper.isPlaying() {
-                let artworkImage: NSImage = (iTunes.currentTrack?.artworks?()[0] as AnyObject).data
-                artworkImage.size = NSSize(width: 22, height: 22)
-
-                statusItemPlay.button?.image = artworkImage
+                statusItemPlay.button?.image = ITunesHelper.getCurrentPlayingArtwork()
             } else {
                 statusItemPlay.button?.image = NSImage(named: ITunesHelper.isPlaying() ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
             }

@@ -686,7 +686,7 @@
             <objects>
                 <windowController storyboardIdentifier="AboutWindowID" id="Ord-md-i9P" sceneMemberID="viewController">
                     <window key="window" title="About Playly" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="XzJ-yd-0v0">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="499" height="230"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
@@ -759,6 +759,11 @@
                                     <action selector="onReportProblemClick:" target="MuG-FQ-krR" id="5Bo-bW-6aj"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cii-RC-J23">
+                                <rect key="frame" x="20" y="45" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSApplicationIcon" id="z3c-wv-zRt"/>
+                            </imageView>
                         </subviews>
                     </view>
                 </viewController>
@@ -768,4 +773,7 @@
             <point key="canvasLocation" x="73" y="237"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSApplicationIcon" width="32" height="32"/>
+    </resources>
 </document>
