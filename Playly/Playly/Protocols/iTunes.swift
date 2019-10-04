@@ -178,6 +178,7 @@ extension SBObject: iTunesPrintSettings {}
 
 // MARK: iTunesApplication
 @objc public protocol iTunesApplication: SBApplicationProtocol {
+    @objc optional func playlists() -> SBElementArray
     @objc optional func AirPlayDevices() -> SBElementArray
     @objc optional func browserWindows() -> SBElementArray
     @objc optional func encoders() -> SBElementArray

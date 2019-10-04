@@ -10,7 +10,7 @@ import Cocoa
 
 class AboutViewController: NSViewController {
     @IBAction func website(_ sender: NSButton) {
-        NSWorkspace.shared.open(URL(string: "http://maxdiachenko.com")!)
+        NSWorkspace.shared.open(URL(string: "https://playly.app")!)
     }
 
     @IBAction func onReportProblemClick(_ sender: NSButton) {
