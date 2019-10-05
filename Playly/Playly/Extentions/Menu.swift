@@ -7,7 +7,7 @@ import Cocoa
 import Foundation
 
 extension AppDelegate {
-    func constructMenu() {
+    func initMenu() {
         let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
 
         if isTrial {

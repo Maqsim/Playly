@@ -6,6 +6,7 @@
 
 import Cocoa
 import Paddle
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var AboutWindowController: NSWindowController? = nil
     var preferences = Preferences()
+    var isPlayerLaunching = false
 
     // Paddle
     let myPaddleVendorID = "102595"
@@ -31,10 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         checkForOtherInstances()
         initPaddle()
-        constructToolbar()
-        constructMenu()
+        initToolbar()
+        initMenu()
 
-        // Check iTunes play state
+        // Observe for iTunes state change
         ITunesHelper.onStateChange(self, action: #selector(onExternalITunesStateUpdate))
 
         // Init About window
@@ -44,6 +46,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func onExternalITunesStateUpdate() {
+        isPlayerLaunching = false
+
         changePlayIcon()
         updateTooltips()
 
@@ -65,24 +69,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func updateTooltips() {
-        if iTunes.isRunning {
+        if iTunes.isRunning && iTunes.playerState != .stopped {
             statusItemPlay.button?.toolTip = "\(iTunes.currentTrack?.artist ?? "") – \(iTunes.currentTrack?.name ?? "")"
         } else {
             statusItemPlay.button?.toolTip = nil
         }
     }
 
-    func changePlayIcon(_ forceImage: String? = nil) {
+
+    func changePlayIcon(_ forceImageName: String) {
+        statusItemPlay.button?.appearsDisabled = false
+        statusItemPlay.button?.image = NSImage(named: forceImageName)
+    }
+
+    func changePlayIcon() {
         statusItemPlay.button?.appearsDisabled = false
 
-        if forceImage != nil {
-            statusItemPlay.button?.image = NSImage(named: forceImage!)
+        if preferences.showArtwork && ITunesHelper.isPlaying() {
+            statusItemPlay.button?.image = ITunesHelper.getCurrentPlayingArtwork()
         } else {
-            if preferences.showArtwork && ITunesHelper.isPlaying() {
-                statusItemPlay.button?.image = ITunesHelper.getCurrentPlayingArtwork()
-            } else {
-                statusItemPlay.button?.image = NSImage(named: ITunesHelper.isPlaying() ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
-            }
+            statusItemPlay.button?.image = NSImage(named: ITunesHelper.isPlaying() ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
         }
     }
 

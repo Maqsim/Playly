@@ -7,7 +7,7 @@ import Cocoa
 import Foundation
 
 extension AppDelegate {
-    func constructToolbar() {
+    func initToolbar() {
         // Prev button
         statusItemPrev.button?.action = #selector(onPrevClick)
         statusItemPrev.button?.image = NSImage(named: NSImage.touchBarRewindTemplateName)
@@ -77,6 +77,10 @@ extension AppDelegate {
     }
 
     @objc func onPrevClick() {
+        if isPlayerLaunching {
+            return
+        }
+
         if !iTunes.isRunning {
             return onPlayClick()
         }
@@ -85,6 +89,10 @@ extension AppDelegate {
     }
 
     @objc func onPlayClick() {
+        if isPlayerLaunching {
+            return
+        }
+
         let event = NSApp.currentEvent!
 
         // Show popup menu on right click
@@ -95,6 +103,8 @@ extension AppDelegate {
 
         // Launch iTunes if not running
         if !iTunes.isRunning {
+            isPlayerLaunching = true
+
             // Loading icon
             if let clockImage = NSImage(named: NSImage.touchBarHistoryTemplateName) {
                 clockImage.size = NSSize(width: 15, height: 25)
@@ -124,6 +134,10 @@ extension AppDelegate {
     }
 
     @objc func onNextClick() {
+        if isPlayerLaunching {
+            return
+        }
+
         if !iTunes.isRunning {
             return onPlayClick()
         }
