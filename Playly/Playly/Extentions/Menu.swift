@@ -14,7 +14,7 @@ extension AppDelegate {
             menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
         }
 
-        menu.addItem(withTitle: "Help", action: #selector(showAboutWindow), keyEquivalent: "")
+//        menu.addItem(withTitle: "Help", action: #selector(showAboutWindow), keyEquivalent: "")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Show iTunes", action: #selector(showITunes), keyEquivalent: "")
         let shuffle =  menu.addItem(withTitle: "Shuffle", action: #selector(self.toggleShuffle(_:)), keyEquivalent: "")
