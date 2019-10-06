@@ -9,7 +9,7 @@ import Foundation
 extension AppDelegate {
     func initMenu() {
         let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
-        let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(onCheckForUpdates), keyEquivalent: "")
+//        let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(onCheckForUpdates), keyEquivalent: "")
 
         if isTrial {
             menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
