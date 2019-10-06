@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItemPrev = NSStatusBar.system.statusItem(withLength: 25)
 
     var AboutWindowController: NSWindowController? = nil
+    var UpdaterWindowController: NSWindowController? = nil
     var preferences = Preferences()
     var isPlayerLaunching = false
 
@@ -41,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Init About window
         AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "AboutWindowID") as! NSWindowController)
+        UpdaterWindowController = (mainStoryboard.instantiateController(withIdentifier: "UpdaterWindowID") as! NSWindowController)
 
         checkActivationAsync()
     }
@@ -86,7 +88,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItemPlay.button?.appearsDisabled = false
 
         if preferences.showArtwork && ITunesHelper.isPlaying() {
-            statusItemPlay.button?.image = ITunesHelper.getCurrentPlayingArtwork()
+            let artwork = ITunesHelper.getCurrentPlayingArtwork()
+
+            statusItemPlay.button?.image = artwork != nil ? artwork : NSImage(named: NSImage.touchBarPauseTemplateName)
         } else {
             statusItemPlay.button?.image = NSImage(named: ITunesHelper.isPlaying() ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
         }

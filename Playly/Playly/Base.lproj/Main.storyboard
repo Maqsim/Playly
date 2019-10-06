@@ -772,6 +772,53 @@
             </objects>
             <point key="canvasLocation" x="73" y="237"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="0SC-Yo-zJT">
+            <objects>
+                <windowController storyboardIdentifier="UpdaterWindowID" id="gnQ-85-oBq" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Exw-MP-geR">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="gnQ-85-oBq" id="ycf-hz-3I8"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="PXz-zF-J80" kind="relationship" relationship="window.shadowedContentViewController" id="4c5-4L-dMG"/>
+                    </connections>
+                </windowController>
+                <customObject id="cih-0Q-v2t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625" y="651"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="NVa-Sn-NUL">
+            <objects>
+                <viewController id="i61-su-umX" sceneMemberID="viewController">
+                    <view key="view" id="eDu-co-0V8">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="cwG-Se-n8y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1332" y="626"/>
+        </scene>
+        <!--Updater View Controller-->
+        <scene sceneID="eyV-Ni-D4b">
+            <objects>
+                <viewController storyboardIdentifier="UpdaterViewController" id="PXz-zF-J80" customClass="UpdaterViewController" customModule="Playly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="sKf-4a-G9O">
+                        <rect key="frame" x="0.0" y="0.0" width="478" height="190"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="zME-OZ-PXv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624" y="300"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>

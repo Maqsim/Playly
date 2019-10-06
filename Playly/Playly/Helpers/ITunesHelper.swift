@@ -30,7 +30,7 @@ struct ITunesHelper {
         _iTunes.isRunning && _iTunes.playerState == .playing
     }
 
-    static func getCurrentPlayingArtwork() -> NSImage {
+    static func getCurrentPlayingArtwork() -> NSImage? {
         let currentTrack: iTunesTrack = _iTunes.currentTrack!
         let currentTrackId: Int = currentTrack.id?() as! Int
         let cacheKey = NSString(string: String(currentTrackId))
@@ -38,6 +38,10 @@ struct ITunesHelper {
         if let cachedVersion = cache.object(forKey: cacheKey) {
             return cachedVersion
         } else {
+            if ((currentTrack.artworks?()[0] as AnyObject).rawData as Data).isEmpty {
+                return nil
+            }
+
             let artworkImage: NSImage = (currentTrack.artworks?()[0] as AnyObject).data
             artworkImage.size = NSSize(width: 22, height: 22)
 

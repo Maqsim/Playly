@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56448B11A38050BC2910EB /* AboutViewController.swift */; };
+		1A56425D02CE8563314ACF77 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564C893BD23C7215329B7A /* Updater.swift */; };
 		1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5641880A557B8A4E319E8A /* Assets.xcassets */; };
 		1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */; };
 		1A5645A7D6BAD1DACFC84365 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564306645C149F2EB2C2BA /* Toolbar.swift */; };
@@ -19,6 +20,7 @@
 		1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564B73172734A573404A2D /* Preferences.swift */; };
 		1A564FCAD9772E6F7B694E28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A564B2E686DEC703D6091A8 /* Main.storyboard */; };
 		500F2D86233FB73A00688FF8 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 500F2D85233FB73900688FF8 /* Resources */; };
+		5073F4CF234A301300B49BF3 /* UpdaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073F4CE234A301300B49BF3 /* UpdaterViewController.swift */; };
 		509A79BA23478CD8005B684A /* Paddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509A79B923478CD8005B684A /* Paddle.framework */; };
 		50DF8B0A23478F9D001ABD96 /* Paddle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 509A79B923478CD8005B684A /* Paddle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B10D8CDB64670F8E1E5BCA6 /* Pods_Playly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7190A0E448194687B4E81C07 /* Pods_Playly.framework */; };
@@ -52,7 +54,9 @@
 		1A5648F37182458F2A50AC04 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A5649EEFC3E86F954A495BA /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		1A564B73172734A573404A2D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		1A564C893BD23C7215329B7A /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		500F2D85233FB73900688FF8 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		5073F4CE234A301300B49BF3 /* UpdaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewController.swift; sourceTree = "<group>"; };
 		509A79B923478CD8005B684A /* Paddle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Paddle.framework; sourceTree = "<group>"; };
 		55337D5BF7D7E9A11AD04498 /* Pods-Playly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playly.debug.xcconfig"; path = "Target Support Files/Pods-Playly/Pods-Playly.debug.xcconfig"; sourceTree = "<group>"; };
 		7190A0E448194687B4E81C07 /* Pods_Playly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Playly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +96,7 @@
 		1A5641A2B71223477249150C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5073F4CE234A301300B49BF3 /* UpdaterViewController.swift */,
 				1A56448B11A38050BC2910EB /* AboutViewController.swift */,
 			);
 			path = Controllers;
@@ -153,6 +158,7 @@
 				1A564306645C149F2EB2C2BA /* Toolbar.swift */,
 				1A5649EEFC3E86F954A495BA /* Menu.swift */,
 				1A5647A99F706DBD7219C5C8 /* Activation.swift */,
+				1A564C893BD23C7215329B7A /* Updater.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -174,7 +180,6 @@
 				55337D5BF7D7E9A11AD04498 /* Pods-Playly.debug.xcconfig */,
 				7B695B36DC25643B62053405 /* Pods-Playly.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -302,12 +307,14 @@
 				1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */,
 				1A5645E9A3DE18367594406D /* iTunes.swift in Sources */,
 				1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */,
+				5073F4CF234A301300B49BF3 /* UpdaterViewController.swift in Sources */,
 				1A5649E49C8BB0A58023FB5E /* LaunchAtLogin.swift in Sources */,
 				1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */,
 				1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */,
 				1A5645A7D6BAD1DACFC84365 /* Toolbar.swift in Sources */,
 				1A564736E5DA2AF92A76E686 /* Menu.swift in Sources */,
 				1A5649E65254350E147DCF1F /* Activation.swift in Sources */,
+				1A56425D02CE8563314ACF77 /* Updater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
