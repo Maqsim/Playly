@@ -9,6 +9,14 @@
 import Cocoa
 
 class AboutViewController: NSViewController {
+    @IBOutlet var versionLabel: NSTextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        versionLabel.stringValue = "Version \(UpdateManager.shared.currentVersion)"
+    }
+
     @IBAction func website(_ sender: NSButton) {
         NSWorkspace.shared.open(URL(string: "https://playly.app")!)
     }

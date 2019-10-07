@@ -57,12 +57,12 @@ class UpdaterViewController: NSViewController {
         checkLabel.stringValue = "New version is available!"
         downloadButton.isHidden = false
         versionLabel.isHidden = false
-        versionLabel.stringValue = "Version \(version)"
+        versionLabel.stringValue = "New version is \(version)"
         downloadButton.action = #selector(openBrowserToDownload)
     }
 
     func allIsUpToDate() {
-        checkLabel.stringValue = "You have the latest version of Playly."
+        checkLabel.stringValue = "You have the latest version of Playly"
     }
 
     @objc func openBrowserToDownload() {
