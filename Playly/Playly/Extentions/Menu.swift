@@ -9,7 +9,7 @@ import Foundation
 extension AppDelegate {
     func initMenu() {
         let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
-//        let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(onCheckForUpdates), keyEquivalent: "")
+        let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(showCheckUpdates), keyEquivalent: "")
 
         if isTrial {
             menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
@@ -148,8 +148,9 @@ extension AppDelegate {
         playlist.playOnce?(false)
     }
 
-    @objc func onCheckForUpdates() {
+    @objc func showCheckUpdates() {
         UpdaterWindowController?.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     @objc func showITunes() {
