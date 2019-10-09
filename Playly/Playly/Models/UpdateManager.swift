@@ -12,7 +12,7 @@ class UpdateManager {
     private init() {}
 
     func checkForUpdates(_ callback: @escaping (Bool, Double?) -> Void) {
-        let url = URL(string: "https://playly.app/versions/latest.txt")!
+        let url = URL(string: "https://playly.app/versions/latest.txt?cache_dump=\(Date().timeIntervalSince1970)")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil || (response as! HTTPURLResponse).statusCode == 404 {
                 return callback(false, nil)

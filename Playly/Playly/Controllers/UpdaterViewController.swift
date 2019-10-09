@@ -57,7 +57,7 @@ class UpdaterViewController: NSViewController {
         checkLabel.stringValue = "New version is available!"
         downloadButton.isHidden = false
         versionLabel.isHidden = false
-        versionLabel.stringValue = "New version is \(version)"
+        versionLabel.stringValue = "Version \(version)"
         downloadButton.action = #selector(openBrowserToDownload)
     }
 
@@ -66,7 +66,6 @@ class UpdaterViewController: NSViewController {
     }
 
     @objc func openBrowserToDownload() {
-        // TODO
         NSWorkspace.shared.open(URL(string: "https://playly.app?download_new_version=true")!)
         self.view.window?.close()
     }
