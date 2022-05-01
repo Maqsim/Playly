@@ -7,7 +7,7 @@ import Foundation
 
 class UpdateManager {
     static let shared = UpdateManager()
-    let currentVersion = Double(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String) as! Double
+    let currentVersion = Double(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)!
 
     private init() {}
 
@@ -18,8 +18,8 @@ class UpdateManager {
                 return callback(false, nil)
             }
 
-            let data = String(bytes: data!, encoding: .utf8) as! String
-            let version = Double(data.components(separatedBy: .newlines)[0]) as! Double
+            let data = String(bytes: data!, encoding: .utf8)!
+            let version = Double(data.components(separatedBy: .newlines)[0])!
 
             callback(version > self.currentVersion, version)
 

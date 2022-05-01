@@ -4,6 +4,10 @@ end is_running
 
 if not is_running("Spotify") then
   tell application "Spotify"
-    reopen
+    launch
+
+    repeat until is_running("Spotify")
+      delay 0.5
+    end repeat
   end tell
 end if

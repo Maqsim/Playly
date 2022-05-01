@@ -50,6 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         changePlayIcon()
         updateTooltips()
 
+//        NSLog(Player.shared.isRunning ? "opened" : "closed")
+
         if preferences.hideControlsOnQuit && !Player.shared.isRunning {
             showControls(false)
         } else {

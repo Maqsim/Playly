@@ -42,7 +42,7 @@ class Player {
 
     func getArtwork() -> NSImage? {
         let currentTrack: SpotifyTrack = (spotifyApp?.currentTrack)!
-        let currentTrackId: String = currentTrack.id?() as! String
+        // let currentTrackId: String = currentTrack.id?() as! String
         let artworkURL = URL(string: currentTrack.artworkUrl!)!
         let artworkImage = try! NSImage(data: Data(contentsOf: artworkURL))
         artworkImage!.size = NSSize(width: 22, height: 22)
@@ -71,6 +71,14 @@ class Player {
         spotifyApp?.nextTrack?()
     }
 
+    func play() {
+        spotifyApp?.play?()
+    }
+
+    func pause() {
+        spotifyApp?.pause?()
+    }
+
     func playpause() {
         spotifyApp?.playpause?()
     }
@@ -79,9 +87,9 @@ class Player {
         NSAppleScript(source: "tell application \"Spotify\" to play playlist \"\(name)\"")?.executeAndReturnError(nil)
     }
 
-    func getPlaylists() -> [ITLibPlaylist] {
-        library.allPlaylists
-    }
+//    func getPlaylists() -> [ITLibPlaylist] {
+//        library.allPlaylists
+//    }
 
     func activate() {
         spotifyApp?.activate()

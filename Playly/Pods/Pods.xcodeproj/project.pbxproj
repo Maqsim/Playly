@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = Sparkle;
+			productName = Sparkle;
 		};
 /* End PBXAggregateTarget section */
 
@@ -48,11 +49,11 @@
 		46B023E24F28228A4B1DA7F0B65B1D5B /* SPUDownloaderDeprecated.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPUDownloaderDeprecated.h; path = Sparkle.framework/Versions/A/Headers/SPUDownloaderDeprecated.h; sourceTree = "<group>"; };
 		51FD46653DCF02039AA1D52564186CC6 /* Pods-Playly-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Playly-umbrella.h"; sourceTree = "<group>"; };
 		61495718A26CC4432C04780E4935D507 /* Pods-Playly-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Playly-frameworks.sh"; sourceTree = "<group>"; };
-		66B17800F518558B2C622C0A272F68BB /* Pods_Playly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Playly.framework; path = "Pods-Playly.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66B17800F518558B2C622C0A272F68BB /* Pods_Playly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Playly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B6BAD4FC04FDB5CEFAD21C75978880 /* SPUDownloaderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPUDownloaderDelegate.h; path = Sparkle.framework/Versions/A/Headers/SPUDownloaderDelegate.h; sourceTree = "<group>"; };
 		7C4B85ACED8A4A539141162B46F38D5E /* SUErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUErrors.h; path = Sparkle.framework/Versions/A/Headers/SUErrors.h; sourceTree = "<group>"; };
 		88CBE879FF4DD55903E06901F54BDFBC /* Sparkle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Sparkle.h; path = Sparkle.framework/Versions/A/Headers/Sparkle.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1DCDD048D9768B2491A5D8089A5D831 /* SUUpdaterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUUpdaterDelegate.h; path = Sparkle.framework/Versions/A/Headers/SUUpdaterDelegate.h; sourceTree = "<group>"; };
 		A76B148BBCCF26F9A88AFDD70604F6C2 /* Pods-Playly-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Playly-dummy.m"; sourceTree = "<group>"; };
 		A870B977B55EEC5B6CC6335CE97346ED /* Pods-Playly-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Playly-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 				F27610214F2DFB81D3505CB8D0773C27 /* Frameworks */,
 				9D967989E3894A7199B4724025FA7425 /* Support Files */,
 			);
-			name = Sparkle;
 			path = Sparkle;
 			sourceTree = "<group>";
 		};
@@ -234,7 +234,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1330;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -242,6 +242,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 61E36A259A3E31F69C48E8697D9EE459 /* Products */;
@@ -289,12 +290,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 164A58EB240E3D712158E07256E9D04C /* Sparkle.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -304,7 +304,6 @@
 			baseConfigurationReference = DDF03DEDB88048CB9BBBAE5547ACE182 /* Pods-Playly.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -361,6 +360,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -425,6 +425,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -452,8 +453,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = /Users/max/Projects/Playly/Playly/Playly/Product/;
 			};
@@ -463,12 +463,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 164A58EB240E3D712158E07256E9D04C /* Sparkle.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -478,7 +477,6 @@
 			baseConfigurationReference = 1B9E2082052C09D93A2D2E50400C9BBF /* Pods-Playly.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
