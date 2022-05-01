@@ -9,6 +9,8 @@ import AppKit
 struct Preferences {
     private let defaults = UserDefaults.standard
 
+    static let MENU_ICON_WIDTH: CGFloat = 20
+
     var launchAtLogin: Bool {
         get {
             defaults.object(forKey: "launchAtLogin") as? Bool ?? true

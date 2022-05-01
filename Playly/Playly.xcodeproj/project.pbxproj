@@ -3,56 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56448B11A38050BC2910EB /* AboutViewController.swift */; };
 		1A5641B13EBBAD17A8D148EC /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564C4EDDB52677DECF970E /* UpdateManager.swift */; };
 		1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5641880A557B8A4E319E8A /* Assets.xcassets */; };
-		1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */; };
+		1A56453282082629BDA058C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646D5B6E79F892D769E26 /* Utils.swift */; };
 		1A5645A7D6BAD1DACFC84365 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564306645C149F2EB2C2BA /* Toolbar.swift */; };
-		1A5645E9A3DE18367594406D /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564223593CD9B29E9E7D67 /* iTunes.swift */; };
 		1A5645F53C39D90CE3613659 /* copy-to-descktop.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1A5647DF44FE010979F041A5 /* copy-to-descktop.sh */; };
 		1A56462F015128269D2C8B24 /* release-update.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1A564A3BB6BD9F281B09403E /* release-update.sh */; };
 		1A564736E5DA2AF92A76E686 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5649EEFC3E86F954A495BA /* Menu.swift */; };
 		1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5648F37182458F2A50AC04 /* AppDelegate.swift */; };
-		1A5649E49C8BB0A58023FB5E /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646C93A88FA50B84814BD /* LaunchAtLogin.swift */; };
-		1A5649E65254350E147DCF1F /* Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5647A99F706DBD7219C5C8 /* Activation.swift */; };
 		1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564B73172734A573404A2D /* Preferences.swift */; };
+		1A564E80E1A146D465FF5BA6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5643640052F4B033DB19A0 /* Player.swift */; };
 		1A564FCAD9772E6F7B694E28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A564B2E686DEC703D6091A8 /* Main.storyboard */; };
 		500F2D86233FB73A00688FF8 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 500F2D85233FB73900688FF8 /* Resources */; };
+		50121A90281DFF6600730B9F /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50121A8F281DFF6600730B9F /* Spotify.swift */; };
+		5073E53C281E27A900B0ED17 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 5073E53B281E27A900B0ED17 /* LaunchAtLogin */; };
 		5073F4CF234A301300B49BF3 /* UpdaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073F4CE234A301300B49BF3 /* UpdaterViewController.swift */; };
-		509A79BA23478CD8005B684A /* Paddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509A79B923478CD8005B684A /* Paddle.framework */; };
-		50DF8B0A23478F9D001ABD96 /* Paddle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 509A79B923478CD8005B684A /* Paddle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B10D8CDB64670F8E1E5BCA6 /* Pods_Playly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7190A0E448194687B4E81C07 /* Pods_Playly.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		50DF8B0923478F8F001ABD96 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				50DF8B0A23478F9D001ABD96 /* Paddle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A5640534E23A3FF3224B2AF /* Playly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5641880A557B8A4E319E8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A564223593CD9B29E9E7D67 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 		1A564306645C149F2EB2C2BA /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		1A5643640052F4B033DB19A0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1A5643DC2C06680635C1D2D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A56448B11A38050BC2910EB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1A56466DC123C8FBA54C12DE /* Playly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Playly.entitlements; sourceTree = "<group>"; };
-		1A5646C93A88FA50B84814BD /* LaunchAtLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
-		1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITunesHelper.swift; sourceTree = "<group>"; };
+		1A5646D5B6E79F892D769E26 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1A5646E2FD66BD90E54EB31C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		1A5647A99F706DBD7219C5C8 /* Activation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activation.swift; sourceTree = "<group>"; };
 		1A5647DF44FE010979F041A5 /* copy-to-descktop.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "copy-to-descktop.sh"; sourceTree = "<group>"; };
 		1A5648F37182458F2A50AC04 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A5649EEFC3E86F954A495BA /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -60,6 +43,7 @@
 		1A564B73172734A573404A2D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1A564C4EDDB52677DECF970E /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		500F2D85233FB73900688FF8 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		50121A8F281DFF6600730B9F /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		5073F4CE234A301300B49BF3 /* UpdaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewController.swift; sourceTree = "<group>"; };
 		509A79B923478CD8005B684A /* Paddle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Paddle.framework; sourceTree = "<group>"; };
 		55337D5BF7D7E9A11AD04498 /* Pods-Playly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playly.debug.xcconfig"; path = "Target Support Files/Pods-Playly/Pods-Playly.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				509A79BA23478CD8005B684A /* Paddle.framework in Frameworks */,
+				5073E53C281E27A900B0ED17 /* LaunchAtLogin in Frameworks */,
 				6B10D8CDB64670F8E1E5BCA6 /* Pods_Playly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +93,7 @@
 		1A564466FC65BB5389728384 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				1A564223593CD9B29E9E7D67 /* iTunes.swift */,
+				50121A8F281DFF6600730B9F /* Spotify.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -134,9 +118,9 @@
 		1A56480C4CBE5501B42FA298 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1A5646C93A88FA50B84814BD /* LaunchAtLogin.swift */,
 				1A564B73172734A573404A2D /* Preferences.swift */,
 				1A564C4EDDB52677DECF970E /* UpdateManager.swift */,
+				1A5643640052F4B033DB19A0 /* Player.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,7 +128,7 @@
 		1A564A0211E7B38A5ECF6A7B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1A5646D5B6E79F892D769E26 /* ITunesHelper.swift */,
+				1A5646D5B6E79F892D769E26 /* Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -162,7 +146,6 @@
 			children = (
 				1A564306645C149F2EB2C2BA /* Toolbar.swift */,
 				1A5649EEFC3E86F954A495BA /* Menu.swift */,
-				1A5647A99F706DBD7219C5C8 /* Activation.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -208,14 +191,17 @@
 				1A56460C0B0147E40644E9B4 /* Sources */,
 				1A5645C45196B469360C2633 /* Frameworks */,
 				1A564DDED2379B0CFBA39E64 /* Resources */,
-				50DF8B0923478F8F001ABD96 /* CopyFiles */,
 				F85C88542ADAF33B3751F567 /* [CP] Embed Pods Frameworks */,
+				5073E53D281E283B00B0ED17 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Playly;
+			packageProductDependencies = (
+				5073E53B281E27A900B0ED17 /* LaunchAtLogin */,
+			);
 			productName = Playly;
 			productReference = 1A5640534E23A3FF3224B2AF /* Playly.app */;
 			productType = "com.apple.product-type.application";
@@ -226,7 +212,13 @@
 		1A5648FD8BE7955A8C56DD88 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				ORGANIZATIONNAME = "Max Diachenko";
+				TargetAttributes = {
+					1A564FCABBCD216C96E41413 = {
+						LastSwiftMigration = 1330;
+					};
+				};
 			};
 			buildConfigurationList = 1A564B0A8B8CA3064545DD65 /* Build configuration list for PBXProject "Playly" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -238,6 +230,9 @@
 				Base,
 			);
 			mainGroup = 1A564CCA50A07596E6B069A1;
+			packageReferences = (
+				5073E53A281E27A900B0ED17 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+			);
 			productRefGroup = 1A564690E34D29602ECFC394 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -285,6 +280,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5073E53D281E283B00B0ED17 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#echo ${BUILT_PRODUCTS_DIR}\n\n\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
 		F85C88542ADAF33B3751F567 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,16 +325,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */,
-				1A5645E9A3DE18367594406D /* iTunes.swift in Sources */,
-				1A56453282082629BDA058C2 /* ITunesHelper.swift in Sources */,
+				1A56453282082629BDA058C2 /* Utils.swift in Sources */,
 				5073F4CF234A301300B49BF3 /* UpdaterViewController.swift in Sources */,
-				1A5649E49C8BB0A58023FB5E /* LaunchAtLogin.swift in Sources */,
+				50121A90281DFF6600730B9F /* Spotify.swift in Sources */,
 				1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */,
 				1A564096411F60023A9A7710 /* AboutViewController.swift in Sources */,
 				1A5645A7D6BAD1DACFC84365 /* Toolbar.swift in Sources */,
 				1A564736E5DA2AF92A76E686 /* Menu.swift in Sources */,
-				1A5649E65254350E147DCF1F /* Activation.swift in Sources */,
 				1A5641B13EBBAD17A8D148EC /* UpdateManager.swift in Sources */,
+				1A564E80E1A146D465FF5BA6 /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,17 +418,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Playly/Playly.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5D29R4Z3UP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Playly/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxdiachenko.Playly;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxdiachenko.Playly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -470,7 +489,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -480,17 +500,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Playly/Playly.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5D29R4Z3UP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Playly/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxdiachenko.Playly;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxdiachenko.Playly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -516,6 +544,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5073E53A281E27A900B0ED17 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5073E53B281E27A900B0ED17 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5073E53A281E27A900B0ED17 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A5648FD8BE7955A8C56DD88 /* Project object */;
 }

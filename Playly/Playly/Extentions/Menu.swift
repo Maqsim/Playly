@@ -5,26 +5,30 @@
 
 import Cocoa
 import Foundation
+import iTunesLibrary
+import LaunchAtLogin
 
 extension AppDelegate {
     func initMenu() {
         let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
         let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(showCheckUpdates), keyEquivalent: "")
 
-        if isTrial {
-            menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
-        }
+        // TODO
+        NSLog(Player.shared.isShuffling ? "Shuffle on" : "Shuffle off")
+
+//        if isTrial {
+//            menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
+//        }
 
 //        menu.addItem(withTitle: "Help", action: #selector(showAboutWindow), keyEquivalent: "")
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Show iTunes", action: #selector(showITunes), keyEquivalent: "")
-        let shuffle =  menu.addItem(withTitle: "Shuffle", action: #selector(self.toggleShuffle(_:)), keyEquivalent: "")
-        shuffle.state = iTunes.shuffleEnabled as! Bool ? .on : .off
+        menu.addItem(withTitle: "Show Player", action: #selector(showPlayer), keyEquivalent: "")
         let playlistsMenu = menu.addItem(withTitle: "Play Playlist", action: nil, keyEquivalent: "")
         menu.addItem(.separator())
         let options =  menu.addItem(withTitle: "Preferences", action: nil, keyEquivalent: "")
         menu.addItem(.separator())
-        let quitAll =  menu.addItem(withTitle: "Quit with iTunes", action: #selector(quitWithITunes), keyEquivalent: "q")
+        // TODO
+        let quitAll =  menu.addItem(withTitle: "Quit with Player", action: #selector(quitWithPlayer), keyEquivalent: "q")
         quitAll.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.shift, .command])
         menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q")
 
@@ -33,28 +37,28 @@ extension AppDelegate {
         let item1 = submenu.addItem(withTitle: "Open at Login", action: #selector(self.toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
         submenu.addItem(.separator())
         let item2 = submenu.addItem(withTitle: "Artwork Inside Play Button", action: #selector(self.toggleShowArtworkOption(_:)), keyEquivalent: "")
-        let item3 = submenu.addItem(withTitle: "Hide Controls when iTunes Quit", action: #selector(self.toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
+        // TODO
+        let item3 = submenu.addItem(withTitle: "Hide Controls when Player Quit", action: #selector(self.toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
         submenu.addItem(.separator())
         let item4 = submenu.addItem(withTitle: "Previous Track Button", action: #selector(self.togglePrevTrackOption(_:)), keyEquivalent: "")
         let item5 = submenu.addItem(withTitle: "Next Track Button", action: #selector(self.toggleNextTrackOption(_:)), keyEquivalent: "")
 
         // Restore options
-        item1.state = preferences.launchAtLogin.toStateValue()
+        item1.state = LaunchAtLogin.isEnabled.toStateValue()
         item2.state = preferences.showArtwork.toStateValue()
         item3.state = preferences.hideControlsOnQuit.toStateValue()
         item4.state = preferences.showPrevButton.toStateValue()
         item5.state = preferences.showNextButton.toStateValue()
 
-        let playlists = (iTunes.sources?()[0] as! iTunesSource).userPlaylists?() ?? []
+        // TODO
+        let playlists = Player.shared.getPlaylists()
         if playlists.count > 0 {
             // Submenu for Play Playlist
             let submenuPlaylist = NSMenu(title: "Preferences")
 
-            for item in (iTunes.sources?()[0] as! iTunesSource).userPlaylists?() ?? [] {
-                let playlist = item as! iTunesPlaylist
-
-                if playlist.tracks?().get()?.count ?? 0 > 0 {
-                    let menuItem = submenuPlaylist.addItem(withTitle: playlist.name!, action: #selector(self.playPlaylist(_:)), keyEquivalent: "")
+            for playlist in playlists {
+                if !playlist.isMaster && playlist.items.count > 0 {
+                    let menuItem = submenuPlaylist.addItem(withTitle: playlist.name, action: #selector(self.playPlaylist(_:)), keyEquivalent: "")
                     menuItem.representedObject = playlist
                 }
             }
@@ -70,10 +74,10 @@ extension AppDelegate {
     @objc func toggleShuffle(_ item: NSMenuItem) {
         if item.state == .on {
             item.state = .off
-            iTunes.setShuffleEnabled?(false)
+            Player.shared.setShuffling(state: false)
         } else {
             item.state = .on
-            iTunes.setShuffleEnabled?(true)
+            Player.shared.setShuffling(state: true)
         }
     }
 
@@ -103,14 +107,14 @@ extension AppDelegate {
 
     @objc func toggleHideControlsOnQuitOption(_ item: NSMenuItem) {
         if item.state == .on {
+            LaunchAtLogin.isEnabled = false
             item.state = .off
-            preferences.hideControlsOnQuit = false
         } else {
+            LaunchAtLogin.isEnabled = true
             item.state = .on
-            preferences.hideControlsOnQuit = true
         }
 
-        if preferences.hideControlsOnQuit && !iTunes.isRunning {
+        if preferences.hideControlsOnQuit && !Player.shared.isRunning {
             showControls(false)
         } else {
             showControls()
@@ -143,9 +147,8 @@ extension AppDelegate {
     }
 
     @objc func playPlaylist(_ item: NSMenuItem) {
-        let playlist = item.representedObject as! iTunesPlaylist
-
-        playlist.playOnce?(false)
+        let playlist = item.representedObject as! ITLibPlaylist
+        Player.shared.playPlaylist(playlist.name)
     }
 
     @objc func showCheckUpdates() {
@@ -153,8 +156,8 @@ extension AppDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
 
-    @objc func showITunes() {
-        iTunes.activate()
+    @objc func showPlayer() {
+        Player.shared.activate()
     }
 
     @objc func showAboutWindow() {
@@ -166,8 +169,8 @@ extension AppDelegate {
         NSApplication.shared.terminate(self)
     }
 
-    @objc func quitWithITunes() {
-        iTunes.quit?()
+    @objc func quitWithPlayer() {
+        Player.shared.quit()
         NSApplication.shared.terminate(self)
     }
 }

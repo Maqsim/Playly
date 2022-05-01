@@ -10,9 +10,10 @@ extension AppDelegate {
     func initToolbar() {
         // Prev button
         statusItemPrev.button?.action = #selector(onPrevClick)
+        // TODO replace with smaller icon
         statusItemPrev.button?.image = NSImage(named: NSImage.touchBarRewindTemplateName)
         statusItemPrev.button?.image?.size = NSSize(width: 13, height: 25)
-        if !preferences.showPrevButton || !iTunes.isRunning && preferences.hideControlsOnQuit {
+        if !preferences.showPrevButton || !Player.shared.isRunning && preferences.hideControlsOnQuit {
             showControls(item: statusItemPrev, isEnabled: false)
         }
 
@@ -26,9 +27,10 @@ extension AppDelegate {
 
         // Next button
         statusItemNext.button?.action = #selector(onNextClick)
+        // TODO replace with smaller icon
         statusItemNext.button?.image = NSImage(named: NSImage.touchBarFastForwardTemplateName)
         statusItemNext.button?.image?.size = NSSize(width: 13, height: 25)
-        if !preferences.showNextButton || !iTunes.isRunning && preferences.hideControlsOnQuit {
+        if !preferences.showNextButton || !Player.shared.isRunning && preferences.hideControlsOnQuit {
             showControls(item: statusItemNext, isEnabled: false)
         }
 
@@ -41,15 +43,16 @@ extension AppDelegate {
     }
 
     @objc func rewind(_ event: NSPressGestureRecognizer) {
-        if !ITunesHelper.isPlaying() || needActivation {
+        // if !Player.shared.isPlaying || needActivation {
+        if !Player.shared.isPlaying {
             return
         }
 
         if event.state == .began {
             // Haptic feedback
-            timer.scheduleRepeating(deadline: .now(), interval: 0.3)
+            timer.schedule(deadline: .now(), repeating: 0.3)
             timer.setEventHandler {
-                self.iTunes.setPlayerPosition?(self.iTunes.playerPosition! - 3)
+                Player.shared.setRelativePosition(-3)
                 self.haptic.perform(.generic, performanceTime: .default)
             }
             timer.resume()
@@ -59,15 +62,16 @@ extension AppDelegate {
     }
 
     @objc func fastForward(_ event: NSPressGestureRecognizer) {
-        if !ITunesHelper.isPlaying() || needActivation {
+        // if !Player.shared.isPlaying || needActivation {
+        if !Player.shared.isPlaying {
             return
         }
 
         if event.state == .began {
             // Haptic feedback
-            timer.scheduleRepeating(deadline: .now(), interval: 0.1)
+            timer.schedule(deadline: .now(), repeating: 0.1)
             timer.setEventHandler {
-                self.iTunes.setPlayerPosition?(self.iTunes.playerPosition! + 3)
+                Player.shared.setRelativePosition(3)
                 self.haptic.perform(.generic, performanceTime: .default)
             }
             timer.resume()
@@ -81,11 +85,11 @@ extension AppDelegate {
             return
         }
 
-        if !iTunes.isRunning {
+        if !Player.shared.isRunning {
             return onPlayClick()
         }
 
-        iTunes.backTrack?()
+        Player.shared.backTrack()
     }
 
     @objc func onPlayClick() {
@@ -102,7 +106,7 @@ extension AppDelegate {
         }
 
         // Launch iTunes if not running
-        if !iTunes.isRunning {
+        if !Player.shared.isRunning {
             isPlayerLaunching = true
 
             // Loading icon
@@ -112,25 +116,28 @@ extension AppDelegate {
                 statusItemPlay.button?.appearsDisabled = true
             }
 
-            return ITunesHelper.launchAndPlay()
+            return Utils.launchAndPlay()
         }
 
         // Double click
         let isDoubleClick = event.clickCount == 2
-        let wasPlaying = !ITunesHelper.isPlaying()
+        let wasPlaying = !Player.shared.isPlaying
 
+        // TODO fix Option keydown
         if isDoubleClick && wasPlaying {
             let withOption = NSEvent.ModifierFlags(rawValue: event.modifierFlags.intersection(.deviceIndependentFlagsMask).rawValue * 2) == .option
 
             if !preferences.showPrevButton && withOption {
-                iTunes.previousTrack?()
+                Player.shared.prevTrack()
             } else if !preferences.showNextButton {
-                iTunes.nextTrack?()
+                Player.shared.nextTrack()
             }
+            
+            return
         }
 
         // Single click
-        iTunes.playpause?()
+        Player.shared.playpause()
     }
 
     @objc func onNextClick() {
@@ -138,10 +145,11 @@ extension AppDelegate {
             return
         }
 
-        if !iTunes.isRunning {
+        if !Player.shared.isRunning {
             return onPlayClick()
         }
 
-        iTunes.nextTrack?()
+        Player.shared.nextTrack()
     }
+
 }
