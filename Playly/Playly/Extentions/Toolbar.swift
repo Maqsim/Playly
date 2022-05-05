@@ -10,12 +10,8 @@ extension AppDelegate {
   func initToolbar() {
     // Prev button
     statusItemPrev.button?.action = #selector(onPrevClick)
-    // TODO replace with smaller icon
     statusItemPrev.button?.image = NSImage(named: NSImage.touchBarRewindTemplateName)
     statusItemPrev.button?.image?.size = NSSize(width: 13, height: 25)
-    if !preferences.showPrevButton || !Player.shared.isRunning && preferences.hideControlsOnQuit {
-      showControls(item: statusItemPrev, isEnabled: false)
-    }
 
     let prevTrackLongPressRecognizer = NSPressGestureRecognizer(target: self, action: #selector(self.rewind(_:)))
     prevTrackLongPressRecognizer.minimumPressDuration = 0.5
@@ -27,12 +23,10 @@ extension AppDelegate {
 
     // Next button
     statusItemNext.button?.action = #selector(onNextClick)
-    // TODO replace with smaller icon
     statusItemNext.button?.image = NSImage(named: NSImage.touchBarFastForwardTemplateName)
     statusItemNext.button?.image?.size = NSSize(width: 13, height: 25)
-    if !preferences.showNextButton || !Player.shared.isRunning && preferences.hideControlsOnQuit {
-      showControls(item: statusItemNext, isEnabled: false)
-    }
+
+    showControls(true, rerender: true)
 
     let nextTrackLongPressRecognizer = NSPressGestureRecognizer(target: self, action: #selector(self.fastForward(_:)))
     nextTrackLongPressRecognizer.minimumPressDuration = 0.5
@@ -89,7 +83,7 @@ extension AppDelegate {
       return onPlayClick()
     }
 
-    Player.shared.backTrack()
+    Player.shared.prevTrack()
   }
 
   @objc func onPlayClick() {
@@ -106,7 +100,6 @@ extension AppDelegate {
     }
 
     // Launch player if not running
-    // FIXME
     if !Player.shared.isRunning {
       isPlayerLaunching = true
 

@@ -8,24 +8,26 @@ import Foundation
 import ScriptingBridge
 
 extension Notification.Name {
-    static let spotifyPlayerInfo = Notification.Name("com.spotify.client.PlaybackStateChanged")
+  static let spotifyPlayerInfo = Notification.Name("com.spotify.client.PlaybackStateChanged")
 }
 
 struct Utils {
-    static let cache = NSCache<NSString, NSImage>()
+  static func onStateChange(_ sender: Any, action: Selector) {
+    DistributedNotificationCenter.default().addObserver(sender, selector: action, name: .spotifyPlayerInfo, object: nil)
+  }
 
-    private static func runAppleScript(name: String) {
-        let task = Process()
-        task.launchPath = "/usr/bin/osascript"
-        task.arguments = [Bundle.main.path(forResource: name, ofType: ".scpt", inDirectory: "Resources")!]
-        task.launch()
+  static func launchAndPlay() {
+    guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client") else {
+      return
     }
 
-    static func onStateChange(_ sender: Any, action: Selector) {
-        DistributedNotificationCenter.default().addObserver(sender, selector: action, name: .spotifyPlayerInfo, object: nil)
+    let path = "/bin"
+    let configuration = NSWorkspace.OpenConfiguration()
+    configuration.arguments = [path]
+    NSWorkspace.shared.openApplication(at: url, configuration: configuration) { app, _ in
+      if app != nil {
+        Player.shared.play()
+      }
     }
-
-    static func launchAndPlay() {
-        runAppleScript(name: "run-and-play-music")
-    }
+  }
 }

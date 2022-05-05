@@ -13,35 +13,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let haptic = NSHapticFeedbackManager.defaultPerformer
     let menu = NSMenu()
     var preferences = Preferences()
-    let statusItemNext = NSStatusBar.system.statusItem(withLength: Preferences.MENU_ICON_WIDTH)
+    let statusItemNext = NSStatusBar.system.statusItem(withLength: 25)
     let statusItemPlay = NSStatusBar.system.statusItem(withLength: 22)
-    let statusItemPrev = NSStatusBar.system.statusItem(withLength: Preferences.MENU_ICON_WIDTH)
+    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 25)
 
     var AboutWindowController: NSWindowController? = nil
     var UpdaterWindowController: NSWindowController? = nil
     var isPlayerLaunching = false
 
-    // Paddle
-//    let myPaddleVendorID = "102595"
-//    let myPaddleProductID = "572149"
-//    let myPaddleAPIKey = "823d1b07b1c8cdae8104f9a89be6ff77"
-//    var paddle: Paddle?
-//    var paddleProduct: PADProduct?
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         checkForOtherInstances()
-//        initPaddle()
         initToolbar()
         initMenu()
 
-        // Observe for iTunes state change
+        // Observe for Spotify state change
         Utils.onStateChange(self, action: #selector(onExternalSpotifyStateUpdate))
 
         // Init About window
         AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "AboutWindowID") as! NSWindowController)
         UpdaterWindowController = (mainStoryboard.instantiateController(withIdentifier: "UpdaterWindowID") as! NSWindowController)
-
-//        checkActivationAsync()
     }
 
     @objc func onExternalSpotifyStateUpdate() {
@@ -50,11 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         changePlayIcon()
         updateTooltips()
 
-//        NSLog(Player.shared.isRunning ? "opened" : "closed")
-
         if preferences.hideControlsOnQuit && !Player.shared.isRunning {
             showControls(false)
-        } else {
+        } else if preferences.hideControlsOnQuit {
             showControls()
         }
     }
@@ -94,13 +82,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func showControls(_ isEnabled: Bool = true) {
-        showControls(item: statusItemPrev, isEnabled: preferences.showPrevButton && isEnabled)
-        showControls(item: statusItemNext, isEnabled: preferences.showNextButton && isEnabled)
-    }
+    func showControls(_ isEnabled: Bool = true, rerender: Bool = false) {
+        if isEnabled && rerender {
+            statusItemPrev.isVisible = false
+            statusItemPlay.isVisible = false
+            statusItemNext.isVisible = false
 
-    func showControls(item: NSStatusItem, isEnabled: Bool = true) {
-        // Used NSStatusItem length over isVisible to keep order when re-enabling
-        item.length = isEnabled ? Preferences.MENU_ICON_WIDTH : 0
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.statusItemNext.isVisible = self.preferences.showNextButton && isEnabled
+                self.statusItemPlay.isVisible = isEnabled
+                self.statusItemPrev.isVisible = self.preferences.showPrevButton && isEnabled
+            }
+        } else if !rerender {
+            statusItemNext.isVisible = preferences.showNextButton && isEnabled
+            statusItemPlay.isVisible = isEnabled
+            statusItemPrev.isVisible = preferences.showPrevButton && isEnabled
+        }
     }
 }

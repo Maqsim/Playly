@@ -11,11 +11,7 @@ import LaunchAtLogin
 extension AppDelegate {
   func initMenu() {
     let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
-    let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(showCheckUpdates), keyEquivalent: "")
-
-//        if isTrial {
-//            menu.addItem(withTitle: "Register...", action: #selector(showActivationWindow), keyEquivalent: "")
-//        }
+//    let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(showCheckUpdates), keyEquivalent: "")
 
     menu.addItem(.separator())
     menu.addItem(withTitle: "Show Player", action: #selector(showPlayer), keyEquivalent: "")
@@ -25,7 +21,7 @@ extension AppDelegate {
     let options = menu.addItem(withTitle: "Preferences", action: nil, keyEquivalent: "")
     menu.addItem(.separator())
     menu.addItem(withTitle: "Help", action: #selector(showAboutWindow), keyEquivalent: "")
-    let quitAndPauseOption = menu.addItem(withTitle: "Quit and pause", action: #selector(quitAndPause), keyEquivalent: "q")
+    let quitAndPauseOption = menu.addItem(withTitle: "Quit and Pause", action: #selector(quitAndPause), keyEquivalent: "q")
     quitAndPauseOption.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.shift, .command])
     menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q")
 
@@ -37,11 +33,16 @@ extension AppDelegate {
     // TODO
     let hideControls = submenu.addItem(withTitle: "Hide when no Player Opened", action: #selector(toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
     submenu.addItem(.separator())
-    let prevButton = submenu.addItem(withTitle: "Previous Track Button", action: #selector(togglePrevTrackOption(_:)), keyEquivalent: "")
-    let nextButton = submenu.addItem(withTitle: "Next Track Button", action: #selector(toggleNextTrackOption(_:)), keyEquivalent: "")
+
+    // Buttons group
+    let buttonsGroup = submenu.addItem(withTitle: "Buttons", action: nil, keyEquivalent: "")
+    buttonsGroup.isEnabled = false
+
+    let prevButton = submenu.addItem(withTitle: "Previous Track", action: #selector(togglePrevTrackOption(_:)), keyEquivalent: "")
+    let nextButton = submenu.addItem(withTitle: "Next Track", action: #selector(toggleNextTrackOption(_:)), keyEquivalent: "")
 
     // Restore options
-    shuffle.state = Player.shared.isShuffling.toStateValue()
+    shuffle.state = .off
     openAtLogin.state = LaunchAtLogin.isEnabled.toStateValue()
     artworkInsidePlayButton.state = preferences.showArtwork.toStateValue()
     hideControls.state = preferences.hideControlsOnQuit.toStateValue()
@@ -83,11 +84,9 @@ extension AppDelegate {
     if item.state == .on {
       item.state = .off
       LaunchAtLogin.isEnabled = false
-      preferences.launchAtLogin = false
     } else {
       item.state = .on
       LaunchAtLogin.isEnabled = true
-      preferences.launchAtLogin = true
     }
   }
 
@@ -115,33 +114,32 @@ extension AppDelegate {
     if preferences.hideControlsOnQuit && !Player.shared.isRunning {
       showControls(false)
     } else {
-      showControls()
+      showControls(true, rerender: true)
     }
   }
 
   @objc func togglePrevTrackOption(_ item: NSMenuItem) {
     if item.state == .on {
       item.state = .off
-      showControls(item: statusItemPrev, isEnabled: false)
       preferences.showPrevButton = false
     } else {
       item.state = .on
-      showControls(item: statusItemPrev)
       preferences.showPrevButton = true
     }
+
+    showControls(true, rerender: true)
   }
 
   @objc func toggleNextTrackOption(_ item: NSMenuItem) {
     if item.state == .on {
       item.state = .off
-      showControls(item: statusItemNext, isEnabled: false)
       preferences.showNextButton = false
     } else {
       item.state = .on
-      statusItemNext.length = 25
-      showControls(item: statusItemNext)
       preferences.showNextButton = true
     }
+
+    showControls(true, rerender: true)
   }
 
   // TODO
@@ -150,10 +148,10 @@ extension AppDelegate {
 //    Player.shared.playPlaylist(playlist.name)
 //  }
 
-  @objc func showCheckUpdates() {
-    UpdaterWindowController?.showWindow(self)
-    NSApp.activate(ignoringOtherApps: true)
-  }
+//  @objc func showCheckUpdates() {
+//    UpdaterWindowController?.showWindow(self)
+//    NSApp.activate(ignoringOtherApps: true)
+//  }
 
   @objc func showPlayer() {
     Player.shared.activate()
@@ -170,6 +168,6 @@ extension AppDelegate {
 
   @objc func quitAndPause() {
     Player.shared.pause()
-    NSApplication.shared.terminate(self)
+    quit()
   }
 }
