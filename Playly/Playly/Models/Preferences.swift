@@ -9,6 +9,16 @@ import AppKit
 struct Preferences {
     private let defaults = UserDefaults.standard
 
+    var isShuffling: Bool {
+        get {
+            defaults.object(forKey: "isShuffling") as? Bool ?? true
+        }
+
+        set {
+            defaults.set(newValue, forKey: "isShuffling")
+        }
+    }
+
     var showPrevButton: Bool {
         get {
             defaults.object(forKey: "showPrevButton") as? Bool ?? true

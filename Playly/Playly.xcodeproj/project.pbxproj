@@ -12,8 +12,6 @@
 		1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5641880A557B8A4E319E8A /* Assets.xcassets */; };
 		1A56453282082629BDA058C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5646D5B6E79F892D769E26 /* Utils.swift */; };
 		1A5645A7D6BAD1DACFC84365 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564306645C149F2EB2C2BA /* Toolbar.swift */; };
-		1A5645F53C39D90CE3613659 /* copy-to-descktop.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1A5647DF44FE010979F041A5 /* copy-to-descktop.sh */; };
-		1A56462F015128269D2C8B24 /* release-update.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1A564A3BB6BD9F281B09403E /* release-update.sh */; };
 		1A564736E5DA2AF92A76E686 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5649EEFC3E86F954A495BA /* Menu.swift */; };
 		1A564808F418FCB6B05202D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5648F37182458F2A50AC04 /* AppDelegate.swift */; };
 		1A564CED97C4BAE65EFFC26B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A564B73172734A573404A2D /* Preferences.swift */; };
@@ -251,8 +249,6 @@
 				500F2D86233FB73A00688FF8 /* Resources in Resources */,
 				1A5643D24D23CE2EAFE7AA06 /* Assets.xcassets in Resources */,
 				1A564FCAD9772E6F7B694E28 /* Main.storyboard in Resources */,
-				1A56462F015128269D2C8B24 /* release-update.sh in Resources */,
-				1A5645F53C39D90CE3613659 /* copy-to-descktop.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,10 +417,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Playly/Playly.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5D29R4Z3UP;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -435,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxdiachenko.Playly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -505,10 +502,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Playly/Playly.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5D29R4Z3UP;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -83,10 +83,6 @@ class Player {
         spotifyApp?.playpause?()
     }
 
-    func playPlaylist(_ name: String) {
-        NSAppleScript(source: "tell application \"Spotify\" to play playlist \"\(name)\"")?.executeAndReturnError(nil)
-    }
-
 //    func getPlaylists() -> [ITLibPlaylist] {
 //        library.allPlaylists
 //    }

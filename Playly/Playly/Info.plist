@@ -20,12 +20,16 @@
 	<string>1.4</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
-	<string></string>
+	<string>To control Spotify playback</string>
+	<key>NSAppleScriptEnabled</key>
+  <true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Max Diachenko. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>

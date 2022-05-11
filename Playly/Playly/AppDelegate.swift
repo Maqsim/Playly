@@ -13,9 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let haptic = NSHapticFeedbackManager.defaultPerformer
     let menu = NSMenu()
     var preferences = Preferences()
-    let statusItemNext = NSStatusBar.system.statusItem(withLength: 25)
+    let statusItemNext = NSStatusBar.system.statusItem(withLength: 22)
     let statusItemPlay = NSStatusBar.system.statusItem(withLength: 22)
-    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 25)
+    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 22)
 
     var AboutWindowController: NSWindowController? = nil
     var UpdaterWindowController: NSWindowController? = nil
@@ -44,6 +44,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showControls(false)
         } else if preferences.hideControlsOnQuit {
             showControls()
+        }
+
+        if Player.shared.isRunning {
+            preferences.isShuffling = Player.shared.isShuffling;
         }
     }
 

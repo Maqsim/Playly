@@ -42,7 +42,7 @@ extension AppDelegate {
     let nextButton = submenu.addItem(withTitle: "Next Track", action: #selector(toggleNextTrackOption(_:)), keyEquivalent: "")
 
     // Restore options
-    shuffle.state = .off
+    shuffle.state = preferences.isShuffling.toStateValue()
     openAtLogin.state = LaunchAtLogin.isEnabled.toStateValue()
     artworkInsidePlayButton.state = preferences.showArtwork.toStateValue()
     hideControls.state = preferences.hideControlsOnQuit.toStateValue()
@@ -73,9 +73,11 @@ extension AppDelegate {
   @objc func toggleShuffle(_ item: NSMenuItem) {
     if item.state == .on {
       item.state = .off
+      preferences.isShuffling = false;
       Player.shared.setShuffling(state: false)
     } else {
       item.state = .on
+      preferences.isShuffling = true;
       Player.shared.setShuffling(state: true)
     }
   }
