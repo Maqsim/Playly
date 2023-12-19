@@ -18,7 +18,7 @@ class AboutViewController: NSViewController {
     }
 
     @IBAction func website(_ sender: NSButton) {
-        NSWorkspace.shared.open(URL(string: "https://playly.app")!)
+        NSWorkspace.shared.open(URL(string: "https://maxdiachenko.com/playly")!)
     }
 
     @IBAction func onReportProblemClick(_ sender: NSButton) {

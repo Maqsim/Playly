@@ -6,12 +6,10 @@
 import Cocoa
 import Foundation
 import iTunesLibrary
-import LaunchAtLogin
 
 extension AppDelegate {
   func initMenu() {
     let about = menu.addItem(withTitle: "About Playly", action: #selector(showAboutWindow), keyEquivalent: "")
-//    let updater = menu.addItem(withTitle: "Check for Updates...", action: #selector(showCheckUpdates), keyEquivalent: "")
 
     menu.addItem(.separator())
     menu.addItem(withTitle: "Show Player", action: #selector(showPlayer), keyEquivalent: "")
@@ -27,8 +25,8 @@ extension AppDelegate {
 
     // Submenu for Preferences
     let submenu = NSMenu(title: "Preferences")
-    let openAtLogin = submenu.addItem(withTitle: "Open at Login", action: #selector(toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
-    submenu.addItem(.separator())
+//    let openAtLogin = submenu.addItem(withTitle: "Open at Login", action: #selector(toggleLaunchAtLoginOption(_:)), keyEquivalent: "")
+//    submenu.addItem(.separator())
     let artworkInsidePlayButton = submenu.addItem(withTitle: "Artwork Inside Play Button", action: #selector(toggleShowArtworkOption(_:)), keyEquivalent: "")
     // TODO
     let hideControls = submenu.addItem(withTitle: "Hide when no Player Opened", action: #selector(toggleHideControlsOnQuitOption(_:)), keyEquivalent: "")
@@ -43,7 +41,8 @@ extension AppDelegate {
 
     // Restore options
     shuffle.state = preferences.isShuffling.toStateValue()
-    openAtLogin.state = LaunchAtLogin.isEnabled.toStateValue()
+      // TODO
+//      openAtLogin.state = .off
     artworkInsidePlayButton.state = preferences.showArtwork.toStateValue()
     hideControls.state = preferences.hideControlsOnQuit.toStateValue()
     prevButton.state = preferences.showPrevButton.toStateValue()
@@ -85,10 +84,10 @@ extension AppDelegate {
   @objc func toggleLaunchAtLoginOption(_ item: NSMenuItem) {
     if item.state == .on {
       item.state = .off
-      LaunchAtLogin.isEnabled = false
+//      LaunchAtLogin.isEnabled = false
     } else {
       item.state = .on
-      LaunchAtLogin.isEnabled = true
+//      LaunchAtLogin.isEnabled = true
     }
   }
 

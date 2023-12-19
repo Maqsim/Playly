@@ -13,9 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let haptic = NSHapticFeedbackManager.defaultPerformer
     let menu = NSMenu()
     var preferences = Preferences()
-    let statusItemNext = NSStatusBar.system.statusItem(withLength: 22)
+    let statusItemNext = NSStatusBar.system.statusItem(withLength: 30)
     let statusItemPlay = NSStatusBar.system.statusItem(withLength: 22)
-    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 22)
+    let statusItemPrev = NSStatusBar.system.statusItem(withLength: 30)
 
     var AboutWindowController: NSWindowController? = nil
     var UpdaterWindowController: NSWindowController? = nil
@@ -31,7 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Init About window
         AboutWindowController = (mainStoryboard.instantiateController(withIdentifier: "AboutWindowID") as! NSWindowController)
-        UpdaterWindowController = (mainStoryboard.instantiateController(withIdentifier: "UpdaterWindowID") as! NSWindowController)
     }
 
     @objc func onExternalSpotifyStateUpdate() {

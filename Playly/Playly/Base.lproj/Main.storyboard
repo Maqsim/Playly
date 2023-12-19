@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -700,7 +700,7 @@
                 </windowController>
                 <customObject id="Sm4-sr-lnf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="42" y="717"/>
+            <point key="canvasLocation" x="74" y="567"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="8zN-7p-LPS">
@@ -710,7 +710,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="478" height="190"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-lG-2CG">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-lG-2CG">
                                 <rect key="frame" x="140" y="60" width="303" height="13"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Copyright © 2019 Max Diachenko. All rights reserved." id="XeO-5s-0r3">
@@ -719,7 +719,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ryl-Qh-bZb">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ryl-Qh-bZb">
                                 <rect key="frame" x="140" y="111" width="114" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Playly" id="go9-cq-D3y">
@@ -755,7 +755,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSApplicationIcon" id="z3c-wv-zRt"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-jt-UUk">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-jt-UUk">
                                 <rect key="frame" x="140" y="85" width="125" height="22"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0" id="v5u-LF-4VP">
@@ -775,95 +775,18 @@
             </objects>
             <point key="canvasLocation" x="73" y="237"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="0SC-Yo-zJT">
-            <objects>
-                <windowController storyboardIdentifier="UpdaterWindowID" id="gnQ-85-oBq" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Exw-MP-geR">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="172"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="gnQ-85-oBq" id="ycf-hz-3I8"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="PXz-zF-J80" kind="relationship" relationship="window.shadowedContentViewController" id="4c5-4L-dMG"/>
-                    </connections>
-                </windowController>
-                <customObject id="cih-0Q-v2t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="625" y="602"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="NVa-Sn-NUL">
             <objects>
+                <customObject id="cwG-Se-n8y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="i61-su-umX" sceneMemberID="viewController">
                     <view key="view" id="eDu-co-0V8">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="cwG-Se-n8y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1332" y="626"/>
-        </scene>
-        <!--Updater View Controller-->
-        <scene sceneID="eyV-Ni-D4b">
-            <objects>
-                <viewController storyboardIdentifier="UpdaterViewController" id="PXz-zF-J80" customClass="UpdaterViewController" customModule="Playly" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="sKf-4a-G9O">
-                        <rect key="frame" x="0.0" y="0.0" width="475" height="142"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="DNs-2L-VDX">
-                                <rect key="frame" x="138" y="71" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qU6-dK-hoT">
-                                <rect key="frame" x="136" y="95" width="242" height="16"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Checking for updates..." id="Or7-eP-8x9">
-                                    <font key="font" metaFont="systemBold"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Veu-Nf-Oci">
-                                <rect key="frame" x="360" y="83" width="101" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="boN-iT-psp">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usK-5Q-4oS">
-                                <rect key="frame" x="31" y="30" width="82" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSApplicationIcon" id="wYE-CW-nxw"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxj-6r-lPE">
-                                <rect key="frame" x="136" y="76" width="142" height="14"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Version" id="cQJ-eg-thK">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="checkLabel" destination="qU6-dK-hoT" id="HaI-ch-cqL"/>
-                        <outlet property="downloadButton" destination="Veu-Nf-Oci" id="smS-fD-P8D"/>
-                        <outlet property="loader" destination="DNs-2L-VDX" id="f8Q-hj-qpt"/>
-                        <outlet property="versionLabel" destination="Dxj-6r-lPE" id="fX6-XO-N5w"/>
-                    </connections>
-                </viewController>
-                <customObject id="zME-OZ-PXv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="622.5" y="276"/>
         </scene>
     </scenes>
     <resources>
