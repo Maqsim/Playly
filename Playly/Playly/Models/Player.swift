@@ -6,15 +6,14 @@
 import Foundation
 import AppKit
 import ScriptingBridge
-import iTunesLibrary
 
 class Player {
-    // private var musicApp: MusicApplication?
+//     private var musicApp: MusicApplication?
     private var spotifyApp: SpotifyApplication?
 
     static let shared = Player()
     
-    let library = try! ITLibrary(apiVersion: "1.0")
+    // let library = try! ITLibrary(apiVersion: "1.0")
 
     var isRunning: Bool {
         spotifyApp!.isRunning
@@ -38,16 +37,37 @@ class Player {
 
     private init() {
         spotifyApp = SBApplication(bundleIdentifier: "com.spotify.client")
+//         musicApp = SBApplication(bundleIdentifier: "com.apple.Music")
     }
 
-    func getArtwork() -> NSImage? {
-        let currentTrack: SpotifyTrack = (spotifyApp?.currentTrack)!
-        // let currentTrackId: String = currentTrack.id?() as! String
-        let artworkURL = URL(string: currentTrack.artworkUrl!)!
-        let artworkImage = try! NSImage(data: Data(contentsOf: artworkURL))
-        artworkImage!.size = NSSize(width: 22, height: 22)
+    func getArtwork(completion: @escaping (NSImage?) -> Void) {
+        guard let currentTrack = spotifyApp?.currentTrack,
+              let artworkUrlString = currentTrack.artworkUrl,
+              let artworkURL = URL(string: artworkUrlString) else {
+            completion(nil)
+            return
+        }
 
-        return artworkImage
+        // Perform the request asynchronously
+        URLSession.shared.dataTask(with: artworkURL) { data, response, error in
+            if let error = error {
+                print("Failed to fetch artwork: \(error)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data, let artworkImage = NSImage(data: data) else {
+                print("Invalid image data")
+                completion(nil)
+                return
+            }
+
+            // Resize the image to the desired size
+            artworkImage.size = NSSize(width: 22, height: 22)
+
+            // Call the completion handler with the image
+            completion(artworkImage)
+        }.resume()
     }
 
     func setRelativePosition(_ offsetTime: Double) {

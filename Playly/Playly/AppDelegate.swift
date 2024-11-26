@@ -78,8 +78,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItemPlay.button?.appearsDisabled = false
 
         if preferences.showArtwork && Player.shared.isPlaying {
-            let artwork = Player.shared.getArtwork()
-            statusItemPlay.button?.image = artwork != nil ? artwork : NSImage(named: NSImage.touchBarPauseTemplateName)
+            Player.shared.getArtwork { image in
+                DispatchQueue.main.async {
+                    // Update your UI with the artwork
+                    if let artwork = image {
+                        self.statusItemPlay.button?.image = artwork
+                    } else {
+                        self.statusItemPlay.button?.image = NSImage(named: NSImage.touchBarPauseTemplateName)
+                    }
+                }
+            }
         } else {
             statusItemPlay.button?.image = NSImage(named: Player.shared.isPlaying ? NSImage.touchBarPauseTemplateName : NSImage.touchBarPlayTemplateName)
         }

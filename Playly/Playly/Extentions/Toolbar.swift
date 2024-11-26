@@ -98,7 +98,7 @@ extension AppDelegate {
     if isRightClick {
       return statusItemPlay.popUpMenu(menu)
     }
-
+      
     // Launch player if not running
     if !Player.shared.isRunning {
       isPlayerLaunching = true
